@@ -129,3 +129,16 @@ resources:
         KeySchema:
           - AttributeName: calloutID
             KeyType: HASH
+    DesignoProductsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: DesignoProductsTable
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        AttributeDefinitions:
+          - AttributeName: ProductID
+            KeyType: S
+        KeySchema:
+          - AttributeName: ProductID
+            KeyType: HASH

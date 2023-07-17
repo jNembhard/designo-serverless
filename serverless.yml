@@ -142,3 +142,7 @@ resources:
         KeySchema:
           - AttributeName: ProductID
             KeyType: HASH
+    DesignoImageBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: designo-image-bucket

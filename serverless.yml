@@ -65,13 +65,16 @@ functions:
           path: /hello
           method: get
   getCallout:
-    handler: src/dynamoProd/dynamo.getCallout
+    handler: src/dynamoProd/callouts.getCallout
     description: get a single callout object
   postCallout:
-    handler: src/dynamoProd/dynamo.postCallout
+    handler: src/dynamoProd/callouts.postCallout
     description: put a new callout object in the table
+  postCallouts:
+    handler: src/dynamoProd/callouts.postCallouts
+    description: post a new list of callouts into the DesignoCalloutTable
   updateCallout:
-    handler: src/dynamoProd/dynamo.updateCallout
+    handler: src/dynamoProd/callouts.updateCallout
     description: update a single item in the DesignoCalloutTable
   postProduct:
     handler: src/dynamoProd/products.postProduct

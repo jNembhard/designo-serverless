@@ -1,6 +1,8 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, GetCommand, PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { v4 as uuidv4 } from "uuid";
+import { ICallout } from "../interfaces/interface";
+import { callouts } from "../tempData/calloutData";
 
 // serverless invoke local --function postCallout
 
@@ -11,16 +13,6 @@ const getCalloutObj = {
   TableName: "DesignoCalloutTable",
   Key: {
     calloutID: "1",
-  },
-};
-
-const putItemObj = {
-  TableName: "DesignoCalloutTable",
-  Item: {
-    calloutID: "3",
-    title: "Friendly",
-    description:
-      "We are a group of enthusiastic folks who know how to put people first. Our success depends on our customers, and we strive to give them the best experience a company can provide.",
   },
 };
 
@@ -45,13 +37,20 @@ export const getCallout = async () => {
 };
 
 // write a function that will put a callout object into the database
-export const postCallout = async () => {
-  const command = new PutCommand(putItemObj);
+export const postCallout = async (object: ICallout) => {
+  const command = new PutCommand(object);
 
   const response = await docClient.send(command);
   console.log(response);
 
   return response;
+};
+
+export const postCallouts = async () => {
+  for (let i = 0; i < callouts.length; i++) {
+    // console.log(callouts[i]);
+    await postCallout(callouts[i]);
+  }
 };
 
 // write a function that will update a callout object in the dynamodb table

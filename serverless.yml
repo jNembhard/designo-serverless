@@ -40,8 +40,10 @@ provider:
             - "lambda:InvokeFunction"
             - "lambda:InvokeFunctionUrl"
             - "secretsmanager:GetSecretValue"
+            - "s3:GetObject"
           Resource:
             - { "Fn::GetAtt": ["DesignoCalloutTable", "Arn"] }
+            - "arn:aws:s3:::designo-image-bucket/*"
 
 # you can define service wide environment variables here
 #  environment:
@@ -71,6 +73,12 @@ functions:
   updateCallout:
     handler: src/dynamoProd/dynamo.updateCallout
     description: update a single item in the DesignoCalloutTable
+  postProduct:
+    handler: src/dynamoProd/products.postProduct
+    description: add a new product to the DesignoProductsTable
+  postProducts:
+    handler: src/dynamoProd/products.postProducts
+    description: add a list of products to the DesignoProductsTable
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -137,12 +145,29 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         AttributeDefinitions:
+          - AttributeName: ProductType
+            AttributeType: S
           - AttributeName: ProductID
-            KeyType: S
+            AttributeType: S
         KeySchema:
-          - AttributeName: ProductID
+          - AttributeName: ProductType
             KeyType: HASH
+          - AttributeName: ProductID
+            KeyType: RANGE
     DesignoImageBucket:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: designo-image-bucket
+    DesignoImageBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: designo-image-bucket
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Sid: PublicReadGetObject
+              Effect: Allow
+              Principal: "*"
+              Action:
+                - s3:GetObject
+              Resource: arn:aws:s3:::designo-image-bucket/*

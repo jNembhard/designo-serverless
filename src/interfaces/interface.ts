@@ -4,10 +4,9 @@ export interface IProduct {
 }
 
 export interface IProductItem {
-  productID: string;
-  productNumber: string;
+  ProductType: string;
+  ProductID: string;
   title: string;
   description: string;
   productImageUrl: string;
-  type: string;
 }

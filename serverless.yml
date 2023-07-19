@@ -88,6 +88,12 @@ functions:
   postProducts:
     handler: src/dynamoProd/products.postProducts
     description: add a list of products to the DesignoProductsTable
+  postSocial:
+    handler: src/dynamoProd/socials.postSocial
+    description: update a single item in the DesignoSocialsTable
+  postSocials:
+    handler: src/dynamoProd/socials.postSocials
+    description: update a list of items in the DesignoSocialsTable
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -175,6 +181,19 @@ resources:
             AttributeType: S
         KeySchema:
           - AttributeName: LocationID
+            KeyType: HASH
+    DesignoSocialsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: DesignoSocialsTable
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        AttributeDefinitions:
+          - AttributeName: SocialID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: SocialID
             KeyType: HASH
     DesignoImageBucket:
       Type: AWS::S3::Bucket

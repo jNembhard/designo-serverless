@@ -1,13 +1,13 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, GetCommand, PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { v4 as uuidv4 } from "uuid";
-import { ILocation } from "../interfaces/interface";
-import { locations } from "../tempData/locationData";
+import { ISocial } from "../interfaces/interface";
+import { socials } from "../tempData/socialData";
 
 const client = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(client);
 
-export const postLocation = async (object: ILocation) => {
+export const postSocial = async (object: ISocial) => {
   const command = new PutCommand(object);
 
   const response = await docClient.send(command);
@@ -16,8 +16,8 @@ export const postLocation = async (object: ILocation) => {
   return response;
 };
 
-export const postLocations = async () => {
-  for (let i = 0; i < locations.length; i++) {
-    await postLocation(locations[i]);
+export const postSocials = async () => {
+  for (let i = 0; i < socials.length; i++) {
+    await postSocial(socials[i]);
   }
 };

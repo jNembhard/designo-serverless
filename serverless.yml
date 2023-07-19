@@ -64,6 +64,12 @@ functions:
       - httpApi:
           path: /hello
           method: get
+  postAbout:
+    handler: src/dynamoProd/about.postAbout
+    description: add a new item to the DesignoAboutTable
+  postAboutList:
+    handler: src/dynamoProd/about.postAboutList
+    description: add a list of new items to the DesignoAboutTable
   getCallout:
     handler: src/dynamoProd/callouts.getCallout
     description: get a single callout object
@@ -145,6 +151,19 @@ plugins:
 # you can add CloudFormation resource templates here
 resources:
   Resources:
+    DesignoAboutTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: DesignoAboutTable
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        AttributeDefinitions:
+          - AttributeName: AboutID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: AboutID
+            KeyType: HASH
     DesignoCalloutTable:
       Type: AWS::DynamoDB::Table
       Properties:

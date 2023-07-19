@@ -76,6 +76,12 @@ functions:
   updateCallout:
     handler: src/dynamoProd/callouts.updateCallout
     description: update a single item in the DesignoCalloutTable
+  postLocation:
+    handler: src/dynamoProd/locations.postLocation
+    description: update a single item in the DesignoLocationsTable
+  postLocations:
+    handler: src/dynamoProd/locations.postLocations
+    description: update a list of items in the DesignoLocationsTable
   postProduct:
     handler: src/dynamoProd/products.postProduct
     description: add a new product to the DesignoProductsTable
@@ -157,6 +163,19 @@ resources:
             KeyType: HASH
           - AttributeName: ProductID
             KeyType: RANGE
+    DesignoLocationsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: DesignoLocationsTable
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        AttributeDefinitions:
+          - AttributeName: LocationID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: LocationID
+            KeyType: HASH
     DesignoImageBucket:
       Type: AWS::S3::Bucket
       Properties:

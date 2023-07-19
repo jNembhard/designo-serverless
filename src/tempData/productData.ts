@@ -1,4 +1,4 @@
-import { IProduct } from "../interfaces/interface";
+import { IProduct } from "../interfaces/Product";
 
 const postProductObj: IProduct = {
   TableName: "DesignoProductsTable",

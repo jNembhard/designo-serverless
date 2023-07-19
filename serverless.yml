@@ -76,9 +76,15 @@ functions:
   updateCallout:
     handler: src/dynamoProd/callouts.updateCallout
     description: update a single item in the DesignoCalloutTable
+  postDesign:
+    handler: src/dynamoProd/designs.postDesign
+    description: update a single item in the DesignoDesignsTable
+  postDesigns:
+    handler: src/dynamoProd/designs.postDesigns
+    description: add a list of items in the DesignoDesignsTable
   postLocation:
     handler: src/dynamoProd/locations.postLocation
-    description: update a single item in the DesignoLocationsTable
+    description: add a single item in the DesignoLocationsTable
   postLocations:
     handler: src/dynamoProd/locations.postLocations
     description: update a list of items in the DesignoLocationsTable
@@ -90,10 +96,10 @@ functions:
     description: add a list of products to the DesignoProductsTable
   postSocial:
     handler: src/dynamoProd/socials.postSocial
-    description: update a single item in the DesignoSocialsTable
+    description: add a single item in the DesignoSocialsTable
   postSocials:
     handler: src/dynamoProd/socials.postSocials
-    description: update a list of items in the DesignoSocialsTable
+    description: add a list of items in the DesignoSocialsTable
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -151,6 +157,19 @@ resources:
             AttributeType: S
         KeySchema:
           - AttributeName: calloutID
+            KeyType: HASH
+    DesignoDesignsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: DesignoDesignsTable
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        AttributeDefinitions:
+          - AttributeName: DesignID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: DesignID
             KeyType: HASH
     DesignoProductsTable:
       Type: AWS::DynamoDB::Table

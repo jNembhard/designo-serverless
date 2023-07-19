@@ -1,6 +1,6 @@
-import { ICallout } from "../interfaces/interface";
+import { ICallout } from "../interfaces/Callout";
 
-const calloutObj: ICallout = {
+const calloutOne: ICallout = {
   TableName: "DesignoCalloutTable",
   Item: {
     calloutID: "callout-1",
@@ -11,7 +11,7 @@ const calloutObj: ICallout = {
   },
 };
 
-const calloutObj2: ICallout = {
+const calloutTwo: ICallout = {
   TableName: "DesignoCalloutTable",
   Item: {
     calloutID: "callout-2",
@@ -22,7 +22,7 @@ const calloutObj2: ICallout = {
   },
 };
 
-const calloutObj3: ICallout = {
+const calloutThree: ICallout = {
   TableName: "DesignoCalloutTable",
   Item: {
     calloutID: "callout-3",
@@ -33,4 +33,4 @@ const calloutObj3: ICallout = {
   },
 };
 
-export const callouts: ICallout[] = [calloutObj, calloutObj2, calloutObj3];
+export const callouts: ICallout[] = [calloutOne, calloutTwo, calloutThree];

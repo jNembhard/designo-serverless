@@ -1,4 +1,4 @@
-import { ILocation } from "../interfaces/interface";
+import { ILocation } from "../interfaces/Location";
 
 const locationOne: ILocation = {
   TableName: "DesignoLocationsTable",

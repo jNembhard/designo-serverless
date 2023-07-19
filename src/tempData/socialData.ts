@@ -1,4 +1,4 @@
-import { ISocial } from "../interfaces/interface";
+import { ISocial } from "../interfaces/Social";
 
 const socialOne: ISocial = {
   TableName: "DesignoSocialsTable",

@@ -1,12 +1,12 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, GetCommand, PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
-import { ILocation } from "../interfaces/Location";
-import { locations } from "../tempData/locationData";
+import { IDesign } from "../interfaces/Design";
+import { designs } from "../tempData/designData";
 
 const client = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(client);
 
-export const postLocation = async (object: ILocation) => {
+export const postDesign = async (object: IDesign) => {
   const command = new PutCommand(object);
 
   const response = await docClient.send(command);
@@ -15,8 +15,8 @@ export const postLocation = async (object: ILocation) => {
   return response;
 };
 
-export const postLocations = async () => {
-  for (let location of locations) {
-    await postLocation(location);
+export const postDesigns = async () => {
+  for (let design of designs) {
+    await postDesign(design);
   }
 };

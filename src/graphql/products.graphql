@@ -1,0 +1,12 @@
+type Product {
+  ProductType: String!
+  ProductID: String!
+  title: String!
+  description: String!
+  productImageUrl: String!
+}
+
+extend type Query {
+  getProduct(ProductID: ID): Product
+  getProducts: [Product!]!
+}

@@ -6,6 +6,20 @@ import { aboutData } from "../tempData/aboutData";
 const client = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(client);
 
+const tableName = "DesignoAboutTable";
+
+export const getAbout = async (id: string) => {
+  const command = new GetCommand({
+    TableName: tableName,
+    Key: {
+      calloutID: id,
+    },
+  });
+  const response = await docClient.send(command);
+
+  return response;
+};
+
 export const postAbout = async (object: IAbout) => {
   const command = new PutCommand(object);
 

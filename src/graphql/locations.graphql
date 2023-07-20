@@ -1,0 +1,30 @@
+type Location {
+  LocationID: String!
+  locationName: String!
+  locationImageUrls: LocationBreakpoints!
+  address: LocationAddress!
+  contact: Contact!
+  office: String!
+  link: String!
+}
+
+type LocationAddress {
+  street: String!
+  country: String!
+}
+
+type LocationBreakpoints {
+  desktop: String!
+  tablet: String!
+  icon: String!
+}
+
+type Contact {
+  phone: String!
+  email: String!
+}
+
+extend type Query {
+  getLocation(LocationID: ID): Location
+  getLocations: [Location!]!
+}

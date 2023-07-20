@@ -1,3 +1,4 @@
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, GetCommand, PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ICallout } from "../interfaces/Callout";
@@ -6,10 +7,25 @@ import { callouts } from "../tempData/calloutData";
 const client = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(client);
 
+const tableName = "DesignoCalloutTable";
+
+const fetchCalloutById = async (id: string) => {
+  const command = new GetCommand({
+    TableName: tableName,
+    Key: {
+      calloutID: id,
+    },
+  });
+
+  const response = await docClient.send(command);
+
+  return response;
+};
+
 const getCalloutObj = {
   TableName: "DesignoCalloutTable",
   Key: {
-    calloutID: "1",
+    calloutID: "callout-1",
   },
 };
 

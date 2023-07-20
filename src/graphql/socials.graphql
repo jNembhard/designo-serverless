@@ -1,0 +1,11 @@
+type Social {
+  SocialID: String!
+  SocialName: String!
+  SocialUrl: String!
+  SocialIconUrl: String!
+}
+
+extend type Query {
+  getSocial(SocialID: ID): Social
+  getSocials: [Social!]!
+}

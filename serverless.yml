@@ -64,6 +64,9 @@ functions:
       - httpApi:
           path: /hello
           method: get
+  getAbout:
+    handler: src/dynamoProd/about.getAbout
+    description: get an item from the DesignoAboutTable
   postAbout:
     handler: src/dynamoProd/about.postAbout
     description: add a new item to the DesignoAboutTable
@@ -154,6 +157,10 @@ appSync:
   name: designo-graphql
   authentication:
     type: API_KEY
+  apiKeys:
+    - name: jason
+      description: Jason's API key.
+      expiresAfter: 24h
   schema:
     - "src/graphql/*.graphql"
   dataSources:

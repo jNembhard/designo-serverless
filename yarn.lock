@@ -10,6 +10,11 @@
     d "1"
     es5-ext "^0.10.47"
 
+"@aws-appsync/utils@^1.2.5":
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/@aws-appsync/utils/-/utils-1.2.5.tgz#3ac6b5677ca1b5a35b0a69263bec96c2bca7612b"
+  integrity sha512-Ebr2vndynpBnILaAjDOPUGvznQCeNZLNroWqa7FZtNZ9G/+EyhguFcrmvtG96frH31Z/STYGm0EuZb2aZUkGiA==
+
 "@aws-crypto/crc32@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@aws-crypto/crc32/-/crc32-3.0.0.tgz#07300eca214409c33e3ff769cd5697b57fdd38fa"

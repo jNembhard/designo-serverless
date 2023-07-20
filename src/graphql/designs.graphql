@@ -1,0 +1,18 @@
+type Design {
+  DesignID: String!
+  DesignName: String!
+  DesignUrl: String!
+  DesignImageUrls: DesignImageUrls!
+}
+
+type DesignImageUrls {
+  desktop: String!
+  desktopLarge: String
+  tablet: String!
+  mobile: String!
+}
+
+extend type Query {
+  getDesign(DesignID: ID): Design
+  getDesigns: [Design!]!
+}

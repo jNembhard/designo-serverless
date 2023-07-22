@@ -2,17 +2,22 @@ type Design {
   DesignID: String!
   DesignName: String!
   DesignUrl: String!
-  DesignImageUrls: DesignImageUrls!
+  DesignImageUrls: toDesignImageUrls!
 }
 
-type DesignImageUrls {
+type toDesignImageUrls {
   desktop: String!
   desktopLarge: String
   tablet: String!
   mobile: String!
 }
 
+type PaginatedDesigns {
+  designs: [Design!]!
+  nextToken: String
+}
+
 extend type Query {
-  getDesign(DesignID: ID): Design
-  getDesigns: [Design!]!
+  getDesign(DesignID: String!): Design
+  getDesigns(count: Int, nextToken: String): PaginatedDesigns!
 }

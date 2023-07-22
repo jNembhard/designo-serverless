@@ -5,7 +5,12 @@ type Social {
   SocialIconUrl: String!
 }
 
+type PaginatedSocials {
+  socials: [Social!]!
+  nextToken: String
+}
+
 extend type Query {
-  getSocial(SocialID: ID): Social
-  getSocials: [Social!]!
+  getSocial(SocialID: String): Social
+  getSocials(count: Int, nextToken: String): PaginatedSocials!
 }

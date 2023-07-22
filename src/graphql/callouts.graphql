@@ -5,7 +5,12 @@ type Callout {
   calloutImageUrl: String!
 }
 
+type PaginatedCallouts {
+  callouts: [Callout!]!
+  nextToken: String
+}
+
 extend type Query {
-  getCallout(CalloutID: ID): Callout
-  getAllCallouts: [Callout!]!
+  getCallout(CalloutID: String!): Callout
+  getCallouts(count: Int, nextToken: String): PaginatedCallouts!
 }

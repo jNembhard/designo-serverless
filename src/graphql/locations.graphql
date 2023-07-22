@@ -1,30 +1,35 @@
 type Location {
   LocationID: String!
   locationName: String!
-  locationImageUrls: LocationBreakpoints!
-  address: LocationAddress!
-  contact: Contact!
+  locationImageUrls: toLocationImageUrls!
+  address: toLocationAddress!
+  contact: toLocationContact!
   office: String!
   link: String!
 }
 
-type LocationAddress {
+type toLocationAddress {
   street: String!
   country: String!
 }
 
-type LocationBreakpoints {
+type toLocationImageUrls {
   desktop: String!
   tablet: String!
   icon: String!
 }
 
-type Contact {
+type toLocationContact {
   phone: String!
   email: String!
 }
 
+type PaginatedLocations {
+  locations: [Location!]!
+  nextToken: String
+}
+
 extend type Query {
-  getLocation(LocationID: ID): Location
-  getLocations: [Location!]!
+  getLocation(LocationID: String!): Location
+  getLocations(count: Int, nextToken: String): PaginatedLocations!
 }

@@ -2,10 +2,10 @@ type About {
   AboutID: String!
   title: String!
   description: String!
-  AboutImageUrls: AboutImageUrls!
+  AboutImageUrls: toAboutImageUrls!
 }
 
-type AboutImageUrls {
+type toAboutImageUrls {
   desktop: String!
   tablet: String!
   mobile: String!
@@ -13,7 +13,12 @@ type AboutImageUrls {
   heroPatternMobile: String
 }
 
+type PaginatedAbout {
+  about: [About!]!
+  nextToken: String
+}
+
 extend type Query {
-  getAbout(AboutID: String): About
-  getAllAbout: [About!]!
+  getAbout(AboutID: String!): About
+  getAllAbout(count: Int, nextToken: String): PaginatedAbout!
 }

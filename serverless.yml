@@ -158,11 +158,29 @@ appSync:
   authentication:
     type: API_KEY
   apiKeys:
-    - name: jason
+    - name: jason2
       description: Jason's API key.
       expiresAfter: 24h
   schema:
     - "src/graphql/*.graphql"
+  pipelineFunctions:
+    getAbout:
+      dataSource: AboutTable
+      request: src/vtl/about/request.vtl
+      response: src/vtl/about/response.vtl
+      description: get a single item from the AboutTable
+    getAllAbout:
+      dataSource: AboutTable
+      request: src/vtl/aboutAll/request.vtl
+      response: src/vtl/aboutAll/response.vtl
+      description: get a list of items from the AboutTable
+  resolvers:
+    Query.getAbout:
+      functions:
+        - getAbout
+    Query.getAllAbout:
+      functions:
+        - getAllAbout
   dataSources:
     AboutTable:
       type: AMAZON_DYNAMODB

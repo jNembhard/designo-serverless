@@ -11,6 +11,6 @@ type PaginatedCallouts {
 }
 
 extend type Query {
-  getCallout(CalloutID: String!): Callout
+  getCallout(calloutID: String!): Callout
   getCallouts(count: Int, nextToken: String): PaginatedCallouts!
 }

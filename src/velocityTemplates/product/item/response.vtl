@@ -1,0 +1,5 @@
+#if($context.result.ProductType && $context.result.ProductID)
+  $util.toJson($context.result)
+#else
+  $util.error("Item not found with the given ProductType and ProductID")
+#end

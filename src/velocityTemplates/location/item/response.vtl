@@ -1,0 +1,5 @@
+#if($context.result.LocationID)
+  $util.toJson($context.result)
+#else
+  $util.error("Item not found with the given LocationID")
+#end

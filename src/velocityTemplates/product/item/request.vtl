@@ -1,0 +1,9 @@
+{
+  "version": "2018-05-29",
+  "operation": "GetItem",
+  "key": {
+    "ProductType":  $util.dynamodb.toDynamoDBJson($context.arguments.ProductType),
+    "ProductID": $util.dynamodb.toDynamoDBJson($context.arguments.ProductID)
+  },
+  "consistentRead": true
+}

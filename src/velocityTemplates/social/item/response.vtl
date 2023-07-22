@@ -1,0 +1,5 @@
+#if($context.result.SocialID)
+  $util.toJson($context.result)
+#else
+  $util.error("Item not found with the given SocialID")
+#end

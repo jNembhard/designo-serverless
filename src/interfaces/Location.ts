@@ -5,12 +5,12 @@ export interface ILocation {
 
 interface ILocationItem {
   LocationID: string;
-  locationName: string;
-  locationImageUrls: ILocationBreakpoints;
+  name: string;
+  images: ILocationImages;
   address: ILocationAddress;
   contact: IContact;
   office: string;
-  link: string;
+  slug: string;
 }
 
 interface ILocationAddress {
@@ -18,7 +18,7 @@ interface ILocationAddress {
   country: string;
 }
 
-interface ILocationBreakpoints {
+interface ILocationImages {
   desktop: string;
   tablet: string;
   icon: string;

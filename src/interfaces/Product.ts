@@ -8,5 +8,5 @@ interface IProductItem {
   ProductID: string;
   title: string;
   description: string;
-  productImageUrl: string;
+  image: string;
 }

@@ -7,5 +7,5 @@ interface ICalloutItem {
   calloutID: string;
   title: string;
   description: string;
-  calloutImageUrl: string;
+  image: string;
 }

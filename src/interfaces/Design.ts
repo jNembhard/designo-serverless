@@ -5,9 +5,9 @@ export interface IDesign {
 
 interface IDesignItem {
   DesignID: string;
-  designName: string;
-  designUrl: string;
-  designImageUrls: IDesignImageUrls;
+  name: string;
+  slug: string;
+  images: IDesignImageUrls;
   header: string;
 }
 

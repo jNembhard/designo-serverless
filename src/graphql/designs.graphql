@@ -1,12 +1,12 @@
 type Design {
   DesignID: String!
-  designName: String!
-  designUrl: String!
-  designImageUrls: toDesignImageUrls!
+  name: String!
+  slug: String!
+  images: designImages!
   header: String!
 }
 
-type toDesignImageUrls {
+type designImages {
   desktop: String!
   desktopLarge: String
   tablet: String!

@@ -1,25 +1,25 @@
 type Location {
   LocationID: String!
-  locationName: String!
-  locationImageUrls: toLocationImageUrls!
-  address: toLocationAddress!
-  contact: toLocationContact!
+  name: String!
+  images: locationImages!
+  address: locationAddress!
+  contact: locationContact!
   office: String!
-  link: String!
+  slug: String!
 }
 
-type toLocationAddress {
+type locationAddress {
   street: String!
   country: String!
 }
 
-type toLocationImageUrls {
+type locationImages {
   desktop: String!
   tablet: String!
   icon: String!
 }
 
-type toLocationContact {
+type locationContact {
   phone: String!
   email: String!
 }

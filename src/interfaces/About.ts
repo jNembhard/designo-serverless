@@ -7,7 +7,7 @@ interface IAboutItem {
   AboutID: string;
   title: string;
   description: string;
-  AboutImageUrls: IAboutImageUrls;
+  images: IAboutImageUrls;
 }
 
 interface IAboutImageUrls {

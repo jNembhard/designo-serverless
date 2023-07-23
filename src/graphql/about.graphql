@@ -2,10 +2,10 @@ type About {
   AboutID: String!
   title: String!
   description: String!
-  AboutImageUrls: toAboutImageUrls!
+  images: aboutImages!
 }
 
-type toAboutImageUrls {
+type aboutImages {
   desktop: String!
   tablet: String!
   mobile: String!

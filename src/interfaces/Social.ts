@@ -5,7 +5,7 @@ export interface ISocial {
 
 interface ISocialItem {
   SocialID: string;
-  SocialName: string;
-  SocialUrl: string;
-  SocialIconUrl: string;
+  name: string;
+  socialUrl: string;
+  icon: string;
 }

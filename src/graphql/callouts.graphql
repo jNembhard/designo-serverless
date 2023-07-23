@@ -2,7 +2,7 @@ type Callout {
   calloutID: String!
   title: String!
   description: String!
-  calloutImageUrl: String!
+  image: String!
 }
 
 type PaginatedCallouts {

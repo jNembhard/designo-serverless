@@ -1,8 +1,8 @@
 type Social {
   SocialID: String!
-  SocialName: String!
-  SocialUrl: String!
-  SocialIconUrl: String!
+  name: String!
+  socialUrl: String!
+  icon: String!
 }
 
 type PaginatedSocials {

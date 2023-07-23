@@ -4,8 +4,8 @@ const locationOne: ILocation = {
   TableName: "DesignoLocationsTable",
   Item: {
     LocationID: "location-1",
-    locationName: "canada",
-    locationImageUrls: {
+    name: "canada",
+    images: {
       desktop: "https://designo-image-bucket.s3.amazonaws.com/assets/locations/desktop/image-map-canada.png",
       tablet: "https://designo-image-bucket.s3.amazonaws.com/assets/locations/tablet/image-map-canada.png",
       icon: "https://designo-image-bucket.s3.amazonaws.com/assets/shared/desktop/illustration-canada.svg",
@@ -19,7 +19,7 @@ const locationOne: ILocation = {
       email: "M : contact@designo.co",
     },
     office: "Designo Central Office",
-    link: "#canada",
+    slug: "#canada",
   },
 };
 
@@ -27,8 +27,8 @@ const locationTwo: ILocation = {
   TableName: "DesignoLocationsTable",
   Item: {
     LocationID: "location-2",
-    locationName: "australia",
-    locationImageUrls: {
+    name: "australia",
+    images: {
       desktop: "https://designo-image-bucket.s3.amazonaws.com/assets/locations/desktop/image-map-australia.png",
       tablet: "https://designo-image-bucket.s3.amazonaws.com/assets/locations/tablet/image-map-australia.png",
       icon: "https://designo-image-bucket.s3.amazonaws.com/assets/shared/desktop/illustration-australia.svg",
@@ -42,7 +42,7 @@ const locationTwo: ILocation = {
       email: "M : contact@designo.au",
     },
     office: "Designo AU Office",
-    link: "#australia",
+    slug: "#australia",
   },
 };
 
@@ -50,8 +50,8 @@ const locationThree = {
   TableName: "DesignoLocationsTable",
   Item: {
     LocationID: "location-3",
-    locationName: "united kingdom",
-    locationImageUrls: {
+    name: "united kingdom",
+    images: {
       desktop: "https://designo-image-bucket.s3.amazonaws.com/assets/locations/desktop/image-map-united-kingdom.png",
       tablet: "https://designo-image-bucket.s3.amazonaws.com/assets/locations/tablet/image-map-uk.png",
       icon: "https://designo-image-bucket.s3.amazonaws.com/assets/shared/desktop/illustration-united-kingdom.svg",
@@ -65,7 +65,7 @@ const locationThree = {
       email: "M : contact@designo.uk",
     },
     office: "Designo UK Office",
-    link: "#united-kingdom",
+    slug: "#united-kingdom",
   },
 };
 

@@ -1,8 +1,9 @@
 type Design {
   DesignID: String!
-  DesignName: String!
-  DesignUrl: String!
-  DesignImageUrls: toDesignImageUrls!
+  designName: String!
+  designUrl: String!
+  designImageUrls: toDesignImageUrls!
+  header: String!
 }
 
 type toDesignImageUrls {

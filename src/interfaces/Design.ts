@@ -5,9 +5,10 @@ export interface IDesign {
 
 interface IDesignItem {
   DesignID: string;
-  DesignName: string;
-  DesignUrl: string;
-  DesignImageUrls: IDesignImageUrls;
+  designName: string;
+  designUrl: string;
+  designImageUrls: IDesignImageUrls;
+  header: string;
 }
 
 interface IDesignImageUrls {

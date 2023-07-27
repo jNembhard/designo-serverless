@@ -6,11 +6,11 @@ type Social {
 }
 
 type PaginatedSocials {
-  socials: [Social!]!
+  social: [Social!]!
   nextToken: String
 }
 
 extend type Query {
-  getSocial(SocialID: String): Social
-  getSocials(count: Int, nextToken: String): PaginatedSocials!
+  social(SocialID: String): Social
+  socials(count: Int, nextToken: String): PaginatedSocials!
 }

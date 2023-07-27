@@ -1,5 +1,5 @@
 {
-    "locations": $util.toJson($context.result.items)
+    "location": $util.toJson($context.result.items)
     #if( ${context.result.nextToken} )
         ,"nextToken": $util.toJson($context.result.nextToken)
     #end

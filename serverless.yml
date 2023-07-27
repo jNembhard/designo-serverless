@@ -158,9 +158,9 @@ appSync:
   authentication:
     type: API_KEY
   apiKeys:
-    - name: jason2
+    - name: jason3
       description: Jason's API key.
-      expiresAfter: 24h
+      expiresAfter: 1M
   schema:
     - "src/graphql/*.graphql"
   pipelineFunctions:
@@ -230,43 +230,43 @@ appSync:
       response: src/velocityTemplates/social/items/response.vtl
       description: get a list of items from the SocialsTable
   resolvers:
-    Query.getAbout:
+    Query.about:
       functions:
         - getAbout
-    Query.getAllAbout:
+    Query.allAbout:
       functions:
         - getAllAbout
-    Query.getCallout:
+    Query.callout:
       functions:
         - getCallout
-    Query.getCallouts:
+    Query.callouts:
       functions:
         - getCallouts
-    Query.getDesign:
+    Query.design:
       functions:
         - getDesign
-    Query.getDesigns:
+    Query.designs:
       functions:
         - getDesigns
-    Query.getLocation:
+    Query.location:
       functions:
         - getLocation
-    Query.getLocations:
+    Query.locations:
       functions:
         - getLocations
-    Query.getProduct:
+    Query.product:
       functions:
         - getProduct
-    Query.getProductGroup:
+    Query.productGroup:
       functions:
         - getProductGroup
-    Query.getProducts:
+    Query.products:
       functions:
         - getProducts
-    Query.getSocial:
+    Query.social:
       functions:
         - getSocial
-    Query.getSocials:
+    Query.socials:
       functions:
         - getSocials
   dataSources:

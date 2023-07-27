@@ -7,12 +7,12 @@ type Product {
 }
 
 type PaginatedProducts {
-  products: [Product!]!
+  product: [Product!]!
   nextToken: String
 }
 
 extend type Query {
-  getProduct(ProductType: String!, ProductID: String): Product
-  getProductGroup(ProductType: String!): PaginatedProducts!
-  getProducts(count: Int, ProductType: String, nextToken: String): PaginatedProducts!
+  product(ProductType: String!, ProductID: String): Product
+  productGroup(ProductType: String!): PaginatedProducts!
+  products(count: Int, ProductType: String, nextToken: String): PaginatedProducts!
 }

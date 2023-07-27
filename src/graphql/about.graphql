@@ -19,6 +19,6 @@ type PaginatedAbout {
 }
 
 extend type Query {
-  getAbout(AboutID: String!): About
-  getAllAbout(count: Int, nextToken: String): PaginatedAbout!
+  about(AboutID: String!): About
+  allAbout(count: Int, nextToken: String): PaginatedAbout!
 }

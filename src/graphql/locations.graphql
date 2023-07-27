@@ -25,11 +25,11 @@ type locationContact {
 }
 
 type PaginatedLocations {
-  locations: [Location!]!
+  location: [Location!]!
   nextToken: String
 }
 
 extend type Query {
-  getLocation(LocationID: String!): Location
-  getLocations(count: Int, nextToken: String): PaginatedLocations!
+  location(LocationID: String!): Location
+  locations(count: Int, nextToken: String): PaginatedLocations!
 }

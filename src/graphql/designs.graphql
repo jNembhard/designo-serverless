@@ -14,11 +14,11 @@ type designImages {
 }
 
 type PaginatedDesigns {
-  designs: [Design!]!
+  design: [Design!]!
   nextToken: String
 }
 
 extend type Query {
-  getDesign(DesignID: String!): Design
-  getDesigns(count: Int, nextToken: String): PaginatedDesigns!
+  design(DesignID: String!): Design
+  designs(count: Int, nextToken: String): PaginatedDesigns!
 }

@@ -34,6 +34,7 @@ Links to website and frontend of architecture coming soon!
   - [AppSync](https://docs.aws.amazon.com/)
   - [CloudFormation](https://docs.aws.amazon.com/cloudformation/index.html)
   - [DynamoDB](https://docs.aws.amazon.com/dynamodb/)
+  - [Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
   - [S3](https://docs.aws.amazon.com/s3/index.html)
 - [GraphQL](https://graphql.org/)
 - [Serverless](https://www.serverless.com/framework/docs)

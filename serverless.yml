@@ -34,12 +34,6 @@ provider:
             - "arn:aws:s3:::designo-image-bucket/*"
 
 functions:
-  hello:
-    handler: src/handlers.hello
-    events:
-      - httpApi:
-          path: /hello
-          method: get
   getAbout:
     handler: src/dynamoProd/about.getAbout
     description: get an item from the DesignoAboutTable

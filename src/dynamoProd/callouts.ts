@@ -9,34 +9,21 @@ const docClient = DynamoDBDocumentClient.from(client);
 
 const tableName = "DesignoCalloutTable";
 
-const fetchCalloutById = async (id: string) => {
-  const command = new GetCommand({
-    TableName: tableName,
-    Key: {
-      calloutID: id,
-    },
-  });
-
-  const response = await docClient.send(command);
-
-  return response;
-};
-
 const getCalloutObj = {
-  TableName: "DesignoCalloutTable",
+  TableName: tableName,
   Key: {
     calloutID: "callout-1",
   },
 };
 
 const updateCalloutObj = {
-  TableName: "DesignoCalloutTable",
+  TableName: tableName,
   Key: {
-    calloutID: 1,
+    calloutID: "callout-4",
   },
-  UpdateExpression: "set calloutText = :t",
+  UpdateExpression: "set title = :title",
   ExpressionAttributeValues: {
-    ":t": "This is a test",
+    ":title": "engaging",
   },
   ReturnValues: "UPDATED_NEW",
 };
@@ -64,9 +51,13 @@ export const postCallouts = async () => {
 };
 
 export const updateCallout = async () => {
-  const command = new UpdateCommand(getCalloutObj);
-  const response = await docClient.send(command);
+  try {
+    const command = new UpdateCommand(updateCalloutObj);
+    const response = await docClient.send(command);
 
-  console.log(response);
-  return response;
+    console.log(response);
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
 };

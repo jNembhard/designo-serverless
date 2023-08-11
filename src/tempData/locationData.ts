@@ -6,9 +6,9 @@ const locationOne: ILocation = {
     LocationID: "location-1",
     name: "canada",
     images: {
-      desktop: "https://d39flyyba0jiph.cloudfront.net/assets/locations/desktop/image-map-canada.png",
-      tablet: "https://d39flyyba0jiph.cloudfront.net/assets/locations/tablet/image-map-canada.png",
-      icon: "https://d39flyyba0jiph.cloudfront.net/assets/shared/desktop/illustration-canada.svg",
+      desktop: "assets/locations/desktop/image-map-canada.png",
+      tablet: "assets/locations/tablet/image-map-canada.png",
+      icon: "assets/shared/desktop/illustration-canada.svg",
     },
     address: {
       street: "3886 Wellington St",
@@ -29,9 +29,9 @@ const locationTwo: ILocation = {
     LocationID: "location-2",
     name: "australia",
     images: {
-      desktop: "https://d39flyyba0jiph.cloudfront.net/assets/locations/desktop/image-map-australia.png",
-      tablet: "https://d39flyyba0jiph.cloudfront.net/assets/locations/tablet/image-map-australia.png",
-      icon: "https://d39flyyba0jiph.cloudfront.net/assets/shared/desktop/illustration-australia.svg",
+      desktop: "assets/locations/desktop/image-map-australia.png",
+      tablet: "assets/locations/tablet/image-map-australia.png",
+      icon: "assets/shared/desktop/illustration-australia.svg",
     },
     address: {
       street: "19 Balonne St",
@@ -52,9 +52,9 @@ const locationThree = {
     LocationID: "location-3",
     name: "united kingdom",
     images: {
-      desktop: "https://d39flyyba0jiph.cloudfront.net/assets/locations/desktop/image-map-united-kingdom.png",
-      tablet: "https://d39flyyba0jiph.cloudfront.net/assets/locations/tablet/image-map-uk.png",
-      icon: "https://d39flyyba0jiph.cloudfront.net/assets/shared/desktop/illustration-united-kingdom.svg",
+      desktop: "assets/locations/desktop/image-map-united-kingdom.png",
+      tablet: "assets/locations/tablet/image-map-uk.png",
+      icon: "assets/shared/desktop/illustration-united-kingdom.svg",
     },
     address: {
       street: "13 Colorado Way",

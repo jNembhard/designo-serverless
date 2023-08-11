@@ -16,4 +16,5 @@ interface IAboutImageUrls {
   mobile: string;
   heroPatternDesktop?: string;
   heroPatternMobile?: string;
+  keypointBgPattern?: string;
 }

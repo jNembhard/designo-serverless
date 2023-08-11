@@ -11,6 +11,7 @@ type designImages {
   desktopLarge: String
   tablet: String!
   mobile: String!
+  bgPattern: String!
 }
 
 type PaginatedDesigns {

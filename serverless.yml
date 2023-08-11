@@ -1,14 +1,4 @@
-# Welcome to Serverless!
-#
-# For full config options, check the docs:
-#    docs.serverless.com
-#
-# Happy Coding!
-
 service: designo-serverless
-# app and org for use with dashboard.serverless.com
-#app: your-app-name
-#org: your-org-name
 
 frameworkVersion: "3"
 
@@ -30,7 +20,6 @@ provider:
             - "secretsmanager:GetSecretValue"
             - "s3:GetObject"
           Resource:
-            - { "Fn::GetAtt": ["DesignoCalloutTable", "Arn"] }
             - "arn:aws:s3:::designo-image-bucket/*"
 
 functions:
@@ -232,7 +221,31 @@ appSync:
       config:
         tableName: DesignoSocialsTable
 
+
 resources:
+  Parameters:
+    CachePolicy:
+      Description: specifies the default cache policy for the Designo CloudFront Distribution.
+      Type: String
+      Default: CachingOptimized
+      AllowedValues:
+        - CachingOptimized
+        - CachingDisabled
+        - CachingOptimizedForUncompressedObjects
+        - Elemental-MediaPackage
+        - Amplify
+  Mappings:
+    CachePolicyIds:
+      CachingOptimized:
+        Id: "658327ea-f89d-4fab-a63d-7e88639e58f6"
+      CachingDisabled:
+        Id: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
+      CachingOptimizedForUncompressedObjects:
+        Id: b2884449-e4de-46a7-ac36-70bc7f1ddd6d
+      Elemental-MediaPackage:
+        Id: 08627262-05a9-4f76-9ded-b50ca2e3a84f
+      Amplify:
+        Id: 2e54312d-136d-493c-8eb9-b001f22f67d2
   Resources:
     DesignoAboutTable:
       Type: AWS::DynamoDB::Table
@@ -320,6 +333,11 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: designo-image-bucket
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
     DesignoImageBucketPolicy:
       Type: AWS::S3::BucketPolicy
       Properties:
@@ -327,9 +345,42 @@ resources:
         PolicyDocument:
           Version: "2012-10-17"
           Statement:
-            - Sid: PublicReadGetObject
+            - Sid: AllowCloudFrontServicePrincipalReadOnly
               Effect: Allow
-              Principal: "*"
-              Action:
-                - s3:GetObject
+              Principal:
+                Service: cloudfront.amazonaws.com
+              Action: s3:GetObject
               Resource: arn:aws:s3:::designo-image-bucket/*
+              Condition:
+                StringEquals:
+                  AWS:SourceArn: arn:aws:cloudfront::147962036763:distribution/E2U4EPDXOYPG7T
+    DesignoDistribution:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Origins:
+            - Id: S3Origin
+              DomainName: !GetAtt DesignoImageBucket.DomainName
+              S3OriginConfig:
+                OriginAccessIdentity: ""
+              OriginAccessControlId: !GetAtt DesignoCloudFrontOriginAccessControl.Id
+          Enabled: true
+          DefaultRootObject: assets/
+          Comment: default route for distribution of contents
+          DefaultCacheBehavior:
+            CachePolicyId: !FindInMap [ CachePolicyIds, CachingOptimized, Id ]
+            TargetOriginId: S3Origin
+            ViewerProtocolPolicy: redirect-to-https
+          HttpVersion: http2
+          ViewerCertificate:
+            CloudFrontDefaultCertificate: true
+          IPV6Enabled: false
+    DesignoCloudFrontOriginAccessControl:
+      Type: AWS::CloudFront::OriginAccessControl
+      Properties:
+        OriginAccessControlConfig:
+          Description: Allow access to designo-image-bucket through CloudFront
+          Name: DesignoOAC
+          OriginAccessControlOriginType: s3
+          SigningBehavior: always
+          SigningProtocol: sigv4

@@ -16,4 +16,5 @@ interface IDesignImageUrls {
   desktopLarge?: string;
   tablet: string;
   mobile: string;
+  bgPattern: string;
 }

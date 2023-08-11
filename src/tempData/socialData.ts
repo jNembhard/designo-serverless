@@ -6,7 +6,7 @@ const socialOne: ISocial = {
     SocialID: "social-1",
     name: "Facebook",
     socialUrl: "https://www.facebook.com/",
-    icon: "https://designo-image-bucket.s3.amazonaws.com/assets/shared/desktop/icon-facebook.svg",
+    icon: "https://d39flyyba0jiph.cloudfront.net/assets/shared/desktop/icon-facebook.svg",
   },
 };
 
@@ -16,7 +16,7 @@ const socialTwo: ISocial = {
     SocialID: "social-2",
     name: "Youtube",
     socialUrl: "https://www.youtube.com/",
-    icon: "https://designo-image-bucket.s3.amazonaws.com/assets/shared/desktop/icon-youtube.svg",
+    icon: "https://d39flyyba0jiph.cloudfront.net/assets/shared/desktop/icon-youtube.svg",
   },
 };
 
@@ -26,7 +26,7 @@ const socialThree: ISocial = {
     SocialID: "social-3",
     name: "Twitter",
     socialUrl: "https://twitter.com/",
-    icon: "https://designo-image-bucket.s3.amazonaws.com/assets/shared/desktop/icon-twitter.svg",
+    icon: "https://d39flyyba0jiph.cloudfront.net/assets/shared/desktop/icon-twitter.svg",
   },
 };
 
@@ -36,7 +36,7 @@ const socialFour: ISocial = {
     SocialID: "social-4",
     name: "Pinterest",
     socialUrl: "https://www.pinterest.com/",
-    icon: "https://designo-image-bucket.s3.amazonaws.com/assets/shared/desktop/icon-pinterest.svg",
+    icon: "https://d39flyyba0jiph.cloudfront.net/assets/shared/desktop/icon-pinterest.svg",
   },
 };
 
@@ -46,7 +46,7 @@ const socialFive: ISocial = {
     SocialID: "social-5",
     name: "Instagram",
     socialUrl: "https://www.instagram.com/",
-    icon: "https://designo-image-bucket.s3.amazonaws.com/assets/shared/desktop/icon-instagram.svg",
+    icon: "https://d39flyyba0jiph.cloudfront.net/assets/shared/desktop/icon-instagram.svg",
   },
 };
 

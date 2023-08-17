@@ -5,7 +5,7 @@ export interface IDesign {
 
 interface IDesignItem {
   DesignID: string;
-  name: string;
+  title: string;
   slug: string;
   images: IDesignImageUrls;
   header: string;

@@ -5,11 +5,14 @@ import { getCallout, postCallout, postCallouts } from "../../src/dynamoProd/call
 import { createPrimaryTable, deleteTable } from "../helpers/mockDynamoTables";
 import { callouts } from "../../src/tempData/calloutData";
 import { Tables } from "../data/tables";
+import { updateItem } from "../../src/dynamoProd/update";
+import { updateCallout, updateError } from "../data/updateItems";
 
 const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT });
 const docClient = DynamoDBDocumentClient.from(client);
 
 const calloutTable = Tables[1];
+const calloutError = updateError({ tableName: "DesignoCalloutTable" });
 
 describe("DesignoCalloutTable", () => {
   beforeAll(async () => {
@@ -47,6 +50,27 @@ describe("DesignoCalloutTable", () => {
       });
       const result = await getCallout("callout-1");
       expect(result).toEqual(callouts[0].Item);
+    });
+  });
+
+  describe("updateItem function in callouts", () => {
+    it("should find an calloutID and update an existing item", async () => {
+      docClient.send = jest.fn().mockResolvedValue({
+        Item: updateCallout,
+      });
+
+      const result = await updateItem(updateCallout);
+
+      expect(result?.$metadata.httpStatusCode).toEqual(200);
+      expect(result?.Attributes).toEqual({ title: "test callout" });
+    });
+
+    it("should not find a calloutID or update an existing item", async () => {
+      docClient.send = jest.fn().mockResolvedValue({
+        Item: calloutError,
+      });
+      const result = await updateItem(calloutError);
+      expect(result).toBeUndefined();
     });
   });
 });

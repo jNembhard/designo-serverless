@@ -4,7 +4,7 @@ const designOne: IDesign = {
   TableName: "DesignoDesignsTable",
   Item: {
     DesignID: "design-1",
-    name: "web design",
+    title: "web design",
     slug: "/web-design",
     images: {
       desktop: "assets/home/desktop/image-web-design-small.jpg",
@@ -21,7 +21,7 @@ const designTwo: IDesign = {
   TableName: "DesignoDesignsTable",
   Item: {
     DesignID: "design-2",
-    name: "app design",
+    title: "app design",
     slug: "/app-design",
     images: {
       desktop: "assets/home/desktop/image-app-design.jpg",
@@ -37,7 +37,7 @@ const designThree: IDesign = {
   TableName: "DesignoDesignsTable",
   Item: {
     DesignID: "design-3",
-    name: "graphic design",
+    title: "graphic design",
     slug: "/graphic-design",
     images: {
       desktop: "assets/home/desktop/image-graphic-design.jpg",

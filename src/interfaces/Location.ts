@@ -5,7 +5,7 @@ export interface ILocation {
 
 interface ILocationItem {
   LocationID: string;
-  name: string;
+  title: string;
   images: ILocationImages;
   address: ILocationAddress;
   contact: IContact;

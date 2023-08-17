@@ -5,11 +5,14 @@ import { postProduct, postProducts } from "../../src/dynamoProd/products";
 import { createSortedTable, deleteTable } from "../helpers/mockDynamoTables";
 import { products } from "../../src/tempData/productData";
 import { Tables } from "../data/tables";
+import { updateError, updateProduct } from "../data/updateItems";
+import { updateItem, updateSortedItem } from "../../src/dynamoProd/update";
 
 const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT });
 const docClient = DynamoDBDocumentClient.from(client);
 
 const productsTable = Tables[3];
+const productError = updateError({ tableName: "DesignoProductsTable" });
 
 describe("DesignoProductsTable", () => {
   beforeAll(async () => {
@@ -20,7 +23,7 @@ describe("DesignoProductsTable", () => {
     await deleteTable({ table: productsTable });
   });
 
-  describe("postDesign function", () => {
+  describe("postProduct function", () => {
     it("should add new data to the DesignoDesignsTable", async () => {
       docClient.send = jest.fn().mockResolvedValue({
         Item: products[0],
@@ -37,6 +40,28 @@ describe("DesignoProductsTable", () => {
       });
       const result = await postProducts();
       expect(result.length).toEqual(14);
+    }, 10000);
+  });
+
+  describe("updateItem function in products", () => {
+    it("should find a ProductID and update an existing item", async () => {
+      docClient.send = jest.fn().mockResolvedValue({
+        Item: updateProduct,
+      });
+
+      const result = await updateSortedItem(updateProduct);
+
+      expect(result?.$metadata.httpStatusCode).toEqual(200);
+      expect(result?.Attributes).toEqual({ title: "test product" });
+    });
+
+    it("should not find a ProductID or update an existing item", async () => {
+      docClient.send = jest.fn().mockResolvedValue({
+        Item: productError,
+      });
+
+      const result = await updateItem(productError);
+      expect(result).toBeUndefined();
     });
   });
 });

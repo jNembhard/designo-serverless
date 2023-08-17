@@ -41,9 +41,6 @@ functions:
   postCallouts:
     handler: src/dynamoProd/callouts.postCallouts
     description: post a new list of callouts into the DesignoCalloutTable
-  updateCallout:
-    handler: src/dynamoProd/callouts.updateCallout
-    description: update a single item in the DesignoCalloutTable
   postDesign:
     handler: src/dynamoProd/designs.postDesign
     description: update a single item in the DesignoDesignsTable
@@ -68,6 +65,9 @@ functions:
   postSocials:
     handler: src/dynamoProd/socials.postSocials
     description: add a list of items in the DesignoSocialsTable
+  updateItem:
+    handler: src/dynamoProd/update.updateItem
+    description: update a single item in a table
   
 
 plugins:

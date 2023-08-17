@@ -1,6 +1,6 @@
 type Location {
   LocationID: String!
-  name: String!
+  title: String!
   images: locationImages!
   address: locationAddress!
   contact: locationContact!

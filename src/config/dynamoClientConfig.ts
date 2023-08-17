@@ -9,7 +9,6 @@ const clientProductionConfig = () => {
     dynamoConfig = { endpoint: process.env.DEV_ENDPOINT };
   }
 
-  console.log(dynamoConfig);
   return dynamoConfig;
 };
 

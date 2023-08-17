@@ -1,6 +1,6 @@
 type Design {
   DesignID: String!
-  name: String!
+  title: String!
   slug: String!
   images: designImages!
   header: String!

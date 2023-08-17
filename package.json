@@ -6,6 +6,8 @@
   "scripts": {
     "docker": "docker compose up -d dynamodb",
     "test": "yarn run docker && jest test --silent",
+    "test:verbose": "yarn run docker && jest test",
+    "coverage": "yarn run docker && jest test --coverage",
     "deploy": "serverless deploy"
   },
   "author": "Jason Nembhard",

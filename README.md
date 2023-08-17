@@ -30,7 +30,7 @@ Links to website and frontend of architecture coming soon!
 
 ### Built with
 
-- [Amazon Web Services](https://aws.amazon.com)
+- [Amazon Web Services](https://aws.amazon.com){:target="\_blank"}
   - [AppSync](https://docs.aws.amazon.com/)
   - [CloudFront](https://docs.aws.amazon.com/cloudfront/index.html)
   - [CloudFormation](https://docs.aws.amazon.com/cloudformation/index.html)

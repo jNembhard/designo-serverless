@@ -5,11 +5,14 @@ import { getAbout, postAbout, postAboutList } from "../../src/dynamoProd/about";
 import { createPrimaryTable, deleteTable } from "../helpers/mockDynamoTables";
 import { aboutData } from "../../src/tempData/aboutData";
 import { Tables } from "../data/tables";
+import { updateItem } from "../../src/dynamoProd/update";
+import { updateAbout, updateError } from "../data/updateItems";
 
 const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT });
 const docClient = DynamoDBDocumentClient.from(client);
 
 const aboutTableData = Tables[0];
+const aboutError = updateError({ tableName: "DesignoAboutTable" });
 
 describe("DesignoAboutTable", () => {
   beforeAll(async () => {
@@ -55,6 +58,28 @@ describe("DesignoAboutTable", () => {
       });
       const result = await getAbout("about-2");
       expect(result).toEqual(aboutData[1].Item);
+    });
+
+    describe("UpdateItem function in about", () => {
+      it("should find an AboutID and update an existing item", async () => {
+        docClient.send = jest.fn().mockResolvedValue({
+          Item: updateAbout,
+        });
+
+        const result = await updateItem(updateAbout);
+
+        expect(result?.$metadata.httpStatusCode).toEqual(200);
+        expect(result?.Attributes).toEqual({ title: "test about" });
+      });
+
+      it("should not find an AboutID or update an existing item", async () => {
+        docClient.send = jest.fn().mockResolvedValue({
+          Item: aboutError,
+        });
+
+        const result = await updateItem(aboutError);
+        expect(result).toBeUndefined();
+      });
     });
   });
 });

@@ -1,5 +1,5 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient, GetCommand, PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
+import { DynamoDBDocumentClient, GetCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
 import { ICallout } from "../interfaces/Callout";
 import { callouts } from "../tempData/calloutData";
 import { clientProductionConfig } from "../config/dynamoClientConfig";
@@ -10,18 +10,6 @@ const client = new DynamoDBClient(prodConfig);
 const docClient = DynamoDBDocumentClient.from(client);
 
 const tableName = "DesignoCalloutTable";
-
-const updateCalloutObj = {
-  TableName: tableName,
-  Key: {
-    calloutID: "callout-4",
-  },
-  UpdateExpression: "set title = :title",
-  ExpressionAttributeValues: {
-    ":title": "engaging",
-  },
-  ReturnValues: "UPDATED_NEW",
-};
 
 export const getCallout = async (calloutID: string) => {
   const command = new GetCommand({
@@ -51,16 +39,4 @@ export const postCallouts = async () => {
   }
 
   return responses;
-};
-
-export const updateCallout = async () => {
-  try {
-    const command = new UpdateCommand(updateCalloutObj);
-    const response = await docClient.send(command);
-
-    console.log(response);
-    return response;
-  } catch (err) {
-    console.log(err);
-  }
 };

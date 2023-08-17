@@ -5,11 +5,14 @@ import { postDesign, postDesigns } from "../../src/dynamoProd/designs";
 import { createPrimaryTable, deleteTable } from "../helpers/mockDynamoTables";
 import { designs } from "../../src/tempData/designData";
 import { Tables } from "../data/tables";
+import { updateItem } from "../../src/dynamoProd/update";
+import { updateDesign, updateError } from "../data/updateItems";
 
 const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT });
 const docClient = DynamoDBDocumentClient.from(client);
 
 const designsTable = Tables[2];
+const designsError = updateError({ tableName: "DesignoDesignsTable" });
 
 describe("DesignoDesignsTable", () => {
   beforeAll(async () => {
@@ -37,6 +40,28 @@ describe("DesignoDesignsTable", () => {
       });
       const result = await postDesigns();
       expect(result.length).toEqual(3);
+    });
+  });
+
+  describe("updateItem function in designs", () => {
+    it("should find an DesignID and update an existing item", async () => {
+      docClient.send = jest.fn().mockResolvedValue({
+        Item: updateDesign,
+      });
+
+      const result = await updateItem(updateDesign);
+
+      expect(result?.$metadata.httpStatusCode).toEqual(200);
+      expect(result?.Attributes).toEqual({ title: "test design" });
+    });
+
+    it("should not find a DesignID or update an existing item", async () => {
+      docClient.send = jest.fn().mockResolvedValue({
+        Item: designsError,
+      });
+
+      const result = await updateItem(designsError);
+      expect(result).toBeUndefined();
     });
   });
 });

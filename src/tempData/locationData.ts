@@ -4,7 +4,7 @@ const locationOne: ILocation = {
   TableName: "DesignoLocationsTable",
   Item: {
     LocationID: "location-1",
-    name: "canada",
+    title: "canada",
     images: {
       desktop: "assets/locations/desktop/image-map-canada.png",
       tablet: "assets/locations/tablet/image-map-canada.png",
@@ -27,7 +27,7 @@ const locationTwo: ILocation = {
   TableName: "DesignoLocationsTable",
   Item: {
     LocationID: "location-2",
-    name: "australia",
+    title: "australia",
     images: {
       desktop: "assets/locations/desktop/image-map-australia.png",
       tablet: "assets/locations/tablet/image-map-australia.png",
@@ -50,7 +50,7 @@ const locationThree = {
   TableName: "DesignoLocationsTable",
   Item: {
     LocationID: "location-3",
-    name: "united kingdom",
+    title: "united kingdom",
     images: {
       desktop: "assets/locations/desktop/image-map-united-kingdom.png",
       tablet: "assets/locations/tablet/image-map-uk.png",

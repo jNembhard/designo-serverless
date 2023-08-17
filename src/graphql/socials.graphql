@@ -1,6 +1,6 @@
 type Social {
   SocialID: String!
-  name: String!
+  title: String!
   socialUrl: String!
   icon: String!
 }

@@ -32,18 +32,21 @@ Links to website and frontend of architecture coming soon!
 
 - [Amazon Web Services](https://aws.amazon.com)
   - [AppSync](https://docs.aws.amazon.com/)
+  - [CloudFront](https://docs.aws.amazon.com/cloudfront/index.html)
   - [CloudFormation](https://docs.aws.amazon.com/cloudformation/index.html)
   - [DynamoDB](https://docs.aws.amazon.com/dynamodb/)
   - [Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
   - [S3](https://docs.aws.amazon.com/s3/index.html)
+- [Docker](https://www.docker.com/) - For DynamoDB local testing environment
 - [GraphQL](https://graphql.org/)
+- [Jest](https://jestjs.io/) - Test Cases
 - [Serverless](https://www.serverless.com/framework/docs)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Velocity Template Language](https://velocity.apache.org/engine/1.7/vtl-reference.html)
 
 ### Project and Insights
 
-The backend of this application was meant for a web agency frontend that would be built with React utilizing TypeScript. The data structures are not uniform accross separate data sources, and I decided that GraphQL would be the best approach to handle this issue. This allows for simplified API development using AppSync by pulling necessary data into a single source of truth. Resolvers can be setup to avoid over-fetching and under-fetching the necessary data into the frontend of the application on each call.
+The backend of this application was meant for a web agency frontend that would be built with React utilizing TypeScript. The data structures are not uniform across separate data sources, and I decided that GraphQL would be the best approach to handle this issue. This allows for simplified API development using AppSync by pulling necessary data into a single source of truth. Resolvers can be setup to avoid over-fetching and under-fetching the necessary data into the frontend of the application on each call.
 
 Looking at this example, you can define the types for your data structure:
 
@@ -150,10 +153,10 @@ const designOne: IDesign = {
     name: "web design",
     slug: "/web-design",
     images: {
-      desktop: "https://designo-image-bucket.s3.amazonaws.com/assets/home/desktop/image-web-design-small.jpg",
-      desktopLarge: "https://designo-image-bucket.s3.amazonaws.com/assets/home/desktop/image-web-design-large.jpg",
-      tablet: "https://designo-image-bucket.s3.amazonaws.com/assets/home/tablet/image-web-design.jpg",
-      mobile: "https://designo-image-bucket.s3.amazonaws.com/assets/home/mobile/image-web-design.jpg",
+      desktop: "assets/home/desktop/image-web-design-small.jpg",
+      desktopLarge: "assets/home/desktop/image-web-design-large.jpg",
+      tablet: "assets/home/tablet/image-web-design.jpg",
+      mobile: "assets/home/mobile/image-web-design.jpg",
     },
     header: "We build websites that serve as powerful marketing tools and bring memorable brand experiences.",
   },

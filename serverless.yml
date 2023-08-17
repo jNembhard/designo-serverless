@@ -68,6 +68,7 @@ functions:
   postSocials:
     handler: src/dynamoProd/socials.postSocials
     description: add a list of items in the DesignoSocialsTable
+  
 
 plugins:
   - serverless-plugin-typescript

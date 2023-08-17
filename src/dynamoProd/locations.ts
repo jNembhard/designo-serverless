@@ -2,21 +2,27 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
 import { ILocation } from "../interfaces/Location";
 import { locations } from "../tempData/locationData";
+import { clientProductionConfig } from "../config/dynamoClientConfig";
 
-const client = new DynamoDBClient({});
+const prodConfig = clientProductionConfig();
+
+const client = new DynamoDBClient(prodConfig);
 const docClient = DynamoDBDocumentClient.from(client);
 
 export const postLocation = async (object: ILocation) => {
   const command = new PutCommand(object);
-
   const response = await docClient.send(command);
-  console.log(response);
 
   return response;
 };
 
 export const postLocations = async () => {
+  let responses = [];
+
   for (let location of locations) {
-    await postLocation(location);
+    let response = await postLocation(location);
+    responses.push(response);
   }
+
+  return responses;
 };

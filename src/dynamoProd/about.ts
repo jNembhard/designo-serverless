@@ -37,18 +37,6 @@ export const postAboutList = async () => {
     let response = await postAbout(about);
     responses.push(response);
   }
-  console.log(clientProductionConfig);
+
   return responses;
-};
-
-export const deleteAbout = async (aboutID: string) => {
-  const command = new DeleteCommand({
-    TableName: tableName,
-    Key: {
-      AboutID: aboutID,
-    },
-  });
-  const response = await docClient.send(command);
-
-  return response;
 };

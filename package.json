@@ -6,12 +6,14 @@
   "scripts": {
     "docker": "docker compose up -d dynamodb",
     "test": "yarn run docker && jest test --silent",
+    "test:coverage": "yarn run docker && jest --coverage",
     "test:verbose": "yarn run docker && jest test",
-    "coverage": "yarn run docker && jest test --coverage",
+    "test:watch": "yarn run docker && jest test --silent --watchAll",
+    "test:watch:verbose": "yarn run docker && jest test --watchAll",
     "deploy": "serverless deploy"
   },
   "author": "Jason Nembhard",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "devDependencies": {
     "@babel/core": "^7.22.10",
     "@babel/preset-env": "^7.22.10",

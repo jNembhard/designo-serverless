@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-const clientProductionConfig = () => {
+const clientProductionConfig = (): object => {
   let dynamoConfig = {};
 
   if (process.env.DYNAMO_ENV === "local") {

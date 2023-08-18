@@ -12,7 +12,7 @@ const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT });
 const docClient = DynamoDBDocumentClient.from(client);
 
 const productsTable = Tables[3];
-const productError = updateSortedError({ tableName: "DesignoProductsTable" });
+const productError = updateSortedError("DesignoProductsTable");
 
 describe("DesignoProductsTable", () => {
   beforeAll(async () => {

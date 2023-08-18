@@ -1,5 +1,11 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DeleteCommand, DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
+import {
+  DeleteCommand,
+  DeleteCommandOutput,
+  DynamoDBDocumentClient,
+  PutCommand,
+  PutCommandOutput,
+} from "@aws-sdk/lib-dynamodb";
 import { ISocial } from "../interfaces/Social";
 import { socials } from "../tempData/socialData";
 import { clientProductionConfig } from "../config/dynamoClientConfig";
@@ -11,14 +17,14 @@ const docClient = DynamoDBDocumentClient.from(client);
 
 const tableName = "DesignoSocialsTable";
 
-export const postSocial = async (object: ISocial) => {
+export const postSocial = async (object: ISocial): Promise<PutCommandOutput> => {
   const command = new PutCommand(object);
   const response = await docClient.send(command);
 
   return response;
 };
 
-export const postSocials = async () => {
+export const postSocials = async (): Promise<PutCommandOutput[]> => {
   let responses = [];
   for (let social of socials) {
     let response = await postSocial(social);
@@ -28,7 +34,7 @@ export const postSocials = async () => {
   return responses;
 };
 
-export const deleteSocialItem = async ({ socialID }: { socialID: string }) => {
+export const deleteSocialItem = async (socialID: string): Promise<DeleteCommandOutput> => {
   const params = {
     TableName: tableName,
     Key: {

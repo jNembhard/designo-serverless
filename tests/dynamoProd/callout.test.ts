@@ -12,7 +12,7 @@ const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT });
 const docClient = DynamoDBDocumentClient.from(client);
 
 const calloutTable = Tables[1];
-const calloutError = updateError({ tableName: "DesignoCalloutTable" });
+const calloutError = updateError("DesignoCalloutTable");
 
 describe("DesignoCalloutTable", () => {
   beforeAll(async () => {
@@ -80,7 +80,7 @@ describe("DesignoCalloutTable", () => {
         Item: callouts[0],
       });
 
-      const result = await deleteCallout({ calloutID: "callout-1" });
+      const result = await deleteCallout("callout-1");
       expect(result.$metadata.httpStatusCode).toBe(200);
     });
   });

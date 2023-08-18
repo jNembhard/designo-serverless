@@ -1,5 +1,5 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient, UpdateCommand } from "@aws-sdk/lib-dynamodb";
+import { DynamoDBDocumentClient, UpdateCommand, UpdateCommandOutput } from "@aws-sdk/lib-dynamodb";
 import { clientProductionConfig } from "../config/dynamoClientConfig";
 import { IUpdateItem, IUpdateSortedItem } from "../interfaces/Update";
 
@@ -8,7 +8,7 @@ const prodConfig = clientProductionConfig();
 const client = new DynamoDBClient(prodConfig);
 const docClient = DynamoDBDocumentClient.from(client);
 
-export const updateItem = async (object: IUpdateItem) => {
+export const updateItem = async (object: IUpdateItem): Promise<UpdateCommandOutput | void> => {
   const updateObj = {
     TableName: object.tableName,
     Key: {
@@ -31,7 +31,7 @@ export const updateItem = async (object: IUpdateItem) => {
   }
 };
 
-export const updateSortedItem = async (object: IUpdateSortedItem) => {
+export const updateSortedItem = async (object: IUpdateSortedItem): Promise<UpdateCommandOutput | void> => {
   const updateObj = {
     TableName: object.tableName,
     Key: {

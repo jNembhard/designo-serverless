@@ -27,3 +27,10 @@ export const Tables: IMockTables[] = [
     attributeName: "SocialID",
   },
 ];
+
+export const testTables: IMockTables[] = [
+  { tableName: "TestPrimaryTable", attributeName: "PrimaryID" },
+  { tableName: "TestSortedTable", attributeName: "AppName", attributeValue: "APPID" },
+  { tableName: "TestPrimaryTable2", attributeName: "PrimaryID" },
+  { tableName: "TestSortedTable2", attributeName: "DesignName", attributeValue: "DesignID" },
+];

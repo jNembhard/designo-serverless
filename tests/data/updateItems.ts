@@ -50,9 +50,9 @@ const updateSocial: IUpdateItem = {
   updateValue: "test social",
 };
 
-const updateError = ({ tableName }: { tableName: string }) => {
+const updateError = (tableName: string): IUpdateItem => {
   const errorObj: IUpdateItem = {
-    tableName: `${tableName}`,
+    tableName: tableName,
     hashKey: "ErrorID",
     hashID: "social-1",
     updateKey: "title",
@@ -62,9 +62,9 @@ const updateError = ({ tableName }: { tableName: string }) => {
   return errorObj;
 };
 
-const updateSortedError = ({ tableName }: { tableName: string }) => {
+const updateSortedError = (tableName: string): IUpdateSortedItem => {
   const errorObj: IUpdateSortedItem = {
-    tableName: `${tableName}`,
+    tableName: tableName,
     hashKey: "ProductType",
     hashID: "AppReal",
     sortKey: "ProductID",

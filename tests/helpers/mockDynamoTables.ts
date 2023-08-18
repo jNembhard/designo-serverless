@@ -1,13 +1,17 @@
 import "dotenv/config";
-import { CreateTableCommand, DeleteTableCommand, DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+import {
+  CreateTableCommand,
+  CreateTableCommandOutput,
+  DeleteTableCommand,
+  DynamoDBClient,
+} from "@aws-sdk/client-dynamodb";
+import { DeleteCommandOutput, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 import { IMockTables } from "../interface/MockTables";
-import { Tables } from "../data/tables";
 
 const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT });
 const docClient = DynamoDBDocumentClient.from(client);
 
-export const createPrimaryTable = async ({ table }: { table: IMockTables }) => {
+export const createPrimaryTable = async ({ table }: { table: IMockTables }): Promise<CreateTableCommandOutput> => {
   const createTableCommand = new CreateTableCommand({
     AttributeDefinitions: [
       {
@@ -27,10 +31,12 @@ export const createPrimaryTable = async ({ table }: { table: IMockTables }) => {
     },
     TableName: table.tableName,
   });
-  await docClient.send(createTableCommand);
+  let response = await docClient.send(createTableCommand);
+
+  return response;
 };
 
-export const createSortedTable = async ({ table }: { table: IMockTables }) => {
+export const createSortedTable = async ({ table }: { table: IMockTables }): Promise<CreateTableCommandOutput> => {
   const createTableCommand = new CreateTableCommand({
     AttributeDefinitions: [
       {
@@ -58,26 +64,37 @@ export const createSortedTable = async ({ table }: { table: IMockTables }) => {
     },
     TableName: table.tableName,
   });
-  await docClient.send(createTableCommand);
+  let response = await docClient.send(createTableCommand);
+
+  return response;
 };
 
-export const createAllTables = async () => {
-  for (const table of Tables) {
+export const createAllTables = async (tables: IMockTables[]): Promise<Array<string | undefined>> => {
+  let responses = [];
+  let response;
+
+  for (const table of tables) {
     if (table.attributeValue) {
-      await createSortedTable({ table });
+      response = await createSortedTable({ table });
+      responses.push(response.TableDescription?.TableName);
     } else {
-      await createPrimaryTable({ table });
+      response = await createPrimaryTable({ table });
+      responses.push(response.TableDescription?.TableName);
     }
   }
+
+  return responses;
 };
 
-export const deleteTable = async ({ table }: { table: IMockTables }) => {
+export const deleteTable = async ({ table }: { table: IMockTables }): Promise<DeleteCommandOutput> => {
   const deleteTableCommand = new DeleteTableCommand({ TableName: table.tableName });
-  await docClient.send(deleteTableCommand);
+  const response = await docClient.send(deleteTableCommand);
+
+  return response;
 };
 
-export const deleteAllTables = async () => {
-  for (const table of Tables) {
+export const deleteAllTables = async (tables: IMockTables[]): Promise<void> => {
+  for (const table of tables) {
     deleteTable({ table });
   }
 };

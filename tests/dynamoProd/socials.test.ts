@@ -12,7 +12,7 @@ const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT });
 const docClient = DynamoDBDocumentClient.from(client);
 
 const socialsTable = Tables[5];
-const socialsError = updateError({ tableName: "DesignoSocialsTable" });
+const socialsError = updateError("DesignoSocialsTable");
 
 describe("DesignoSocialsTable", () => {
   beforeAll(async () => {
@@ -71,7 +71,7 @@ describe("DesignoSocialsTable", () => {
         Item: socials[0],
       });
 
-      const result = await deleteSocialItem({ socialID: "social-1" });
+      const result = await deleteSocialItem("social-1");
       expect(result.$metadata.httpStatusCode).toBe(200);
     });
   });

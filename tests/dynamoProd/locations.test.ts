@@ -12,7 +12,7 @@ const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT });
 const docClient = DynamoDBDocumentClient.from(client);
 
 const locationsTable = Tables[4];
-const locationError = updateError({ tableName: "DesignoLocationsTable" });
+const locationError = updateError("DesignoLocationsTable");
 
 describe("DesignoLocationsTable", () => {
   beforeAll(async () => {
@@ -71,7 +71,7 @@ describe("DesignoLocationsTable", () => {
         Item: locations[0],
       });
 
-      const result = await deleteLocation({ locationID: "location-1" });
+      const result = await deleteLocation("location-1");
       expect(result.$metadata.httpStatusCode).toBe(200);
     });
   });

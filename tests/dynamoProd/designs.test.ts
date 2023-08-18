@@ -12,7 +12,7 @@ const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT });
 const docClient = DynamoDBDocumentClient.from(client);
 
 const designsTable = Tables[2];
-const designsError = updateError({ tableName: "DesignoDesignsTable" });
+const designsError = updateError("DesignoDesignsTable");
 
 describe("DesignoDesignsTable", () => {
   beforeAll(async () => {
@@ -71,7 +71,7 @@ describe("DesignoDesignsTable", () => {
         Item: designs[0],
       });
 
-      const result = await deleteDesign({ designID: "design-1" });
+      const result = await deleteDesign("design-1");
       expect(result.$metadata.httpStatusCode).toBe(200);
     });
   });

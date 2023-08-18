@@ -1,5 +1,11 @@
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DeleteCommand, DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
+import { DeleteBackupCommandOutput, DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import {
+  DeleteCommand,
+  DeleteCommandOutput,
+  DynamoDBDocumentClient,
+  PutCommand,
+  PutCommandOutput,
+} from "@aws-sdk/lib-dynamodb";
 import { IDesign } from "../interfaces/Design";
 import { designs } from "../tempData/designData";
 import { clientProductionConfig } from "../config/dynamoClientConfig";
@@ -11,14 +17,14 @@ const docClient = DynamoDBDocumentClient.from(client);
 
 const tableName = "DesignoDesignsTable";
 
-export const postDesign = async (object: IDesign) => {
+export const postDesign = async (object: IDesign): Promise<PutCommandOutput> => {
   const command = new PutCommand(object);
   const response = await docClient.send(command);
 
   return response;
 };
 
-export const postDesigns = async () => {
+export const postDesigns = async (): Promise<PutCommandOutput[]> => {
   let responses = [];
 
   for (let design of designs) {
@@ -29,7 +35,7 @@ export const postDesigns = async () => {
   return responses;
 };
 
-export const deleteDesign = async ({ designID }: { designID: string }) => {
+export const deleteDesign = async (designID: string): Promise<DeleteCommandOutput> => {
   const params = {
     TableName: tableName,
     Key: {

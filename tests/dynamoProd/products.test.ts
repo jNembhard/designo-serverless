@@ -1,18 +1,18 @@
 import "dotenv/config";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
-import { postProduct, postProducts } from "../../src/dynamoProd/products";
+import { deleteProduct, postProduct, postProducts } from "../../src/dynamoProd/products";
 import { createSortedTable, deleteTable } from "../helpers/mockDynamoTables";
 import { products } from "../../src/tempData/productData";
 import { Tables } from "../data/tables";
-import { updateError, updateProduct } from "../data/updateItems";
+import { updateSortedError, updateProduct } from "../data/updateItems";
 import { updateItem, updateSortedItem } from "../../src/dynamoProd/update";
 
 const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT });
 const docClient = DynamoDBDocumentClient.from(client);
 
 const productsTable = Tables[3];
-const productError = updateError({ tableName: "DesignoProductsTable" });
+const productError = updateSortedError({ tableName: "DesignoProductsTable" });
 
 describe("DesignoProductsTable", () => {
   beforeAll(async () => {
@@ -62,6 +62,17 @@ describe("DesignoProductsTable", () => {
 
       const result = await updateItem(productError);
       expect(result).toBeUndefined();
+    });
+  });
+
+  describe("deleteProduct function", () => {
+    it("should delete an existing item based on the ProductType and ProductID", async () => {
+      docClient.send = jest.fn().mockResolvedValue({
+        Item: products[0],
+      });
+
+      const result = await deleteProduct({ productType: "WebDesign", productID: "web-1" });
+      expect(result.$metadata.httpStatusCode).toBe(200);
     });
   });
 });

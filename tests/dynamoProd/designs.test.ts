@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
-import { postDesign, postDesigns } from "../../src/dynamoProd/designs";
+import { deleteDesign, postDesign, postDesigns } from "../../src/dynamoProd/designs";
 import { createPrimaryTable, deleteTable } from "../helpers/mockDynamoTables";
 import { designs } from "../../src/tempData/designData";
 import { Tables } from "../data/tables";
@@ -62,6 +62,17 @@ describe("DesignoDesignsTable", () => {
 
       const result = await updateItem(designsError);
       expect(result).toBeUndefined();
+    });
+  });
+
+  describe("deleteDesign function", () => {
+    it("should delete an existing item based on the DesignID", async () => {
+      docClient.send = jest.fn().mockResolvedValue({
+        Item: designs[0],
+      });
+
+      const result = await deleteDesign({ designID: "design-1" });
+      expect(result.$metadata.httpStatusCode).toBe(200);
     });
   });
 });

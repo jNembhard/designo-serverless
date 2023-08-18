@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
-import { postSocial, postSocials } from "../../src/dynamoProd/socials";
+import { deleteSocialItem, postSocial, postSocials } from "../../src/dynamoProd/socials";
 import { createPrimaryTable, deleteTable } from "../helpers/mockDynamoTables";
 import { socials } from "../../src/tempData/socialData";
 import { Tables } from "../data/tables";
@@ -62,6 +62,17 @@ describe("DesignoSocialsTable", () => {
 
       const result = await updateItem(socialsError);
       expect(result).toBeUndefined();
+    });
+  });
+
+  describe("deleteSocialItem function", () => {
+    it("should delete an existing item based on the SocialID", async () => {
+      docClient.send = jest.fn().mockResolvedValue({
+        Item: socials[0],
+      });
+
+      const result = await deleteSocialItem({ socialID: "social-1" });
+      expect(result.$metadata.httpStatusCode).toBe(200);
     });
   });
 });

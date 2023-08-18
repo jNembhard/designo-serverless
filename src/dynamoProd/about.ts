@@ -12,12 +12,14 @@ const docClient = DynamoDBDocumentClient.from(client);
 const tableName = "DesignoAboutTable";
 
 export const getAbout = async (aboutID: string) => {
-  const command = new GetCommand({
+  const params = {
     TableName: tableName,
     Key: {
       AboutID: aboutID,
     },
-  });
+  };
+
+  const command = new GetCommand(params);
   const response = await docClient.send(command);
 
   return response.Item;
@@ -39,4 +41,18 @@ export const postAboutList = async () => {
   }
 
   return responses;
+};
+
+export const deleteAboutItem = async ({ aboutID }: { aboutID: string }) => {
+  const params = {
+    TableName: tableName,
+    Key: {
+      AboutID: aboutID,
+    },
+  };
+
+  const command = new DeleteCommand(params);
+  const response = await docClient.send(command);
+
+  return response;
 };

@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
-import { getCallout, postCallout, postCallouts } from "../../src/dynamoProd/callouts";
+import { deleteCallout, getCallout, postCallout, postCallouts } from "../../src/dynamoProd/callouts";
 import { createPrimaryTable, deleteTable } from "../helpers/mockDynamoTables";
 import { callouts } from "../../src/tempData/calloutData";
 import { Tables } from "../data/tables";
@@ -71,6 +71,17 @@ describe("DesignoCalloutTable", () => {
       });
       const result = await updateItem(calloutError);
       expect(result).toBeUndefined();
+    });
+  });
+
+  describe("deleteCallout function", () => {
+    it("should delete an existing item based on the calloutID", async () => {
+      docClient.send = jest.fn().mockResolvedValue({
+        Item: callouts[0],
+      });
+
+      const result = await deleteCallout({ calloutID: "callout-1" });
+      expect(result.$metadata.httpStatusCode).toBe(200);
     });
   });
 });

@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
-import { postLocation, postLocations } from "../../src/dynamoProd/locations";
+import { deleteLocation, postLocation, postLocations } from "../../src/dynamoProd/locations";
 import { createPrimaryTable, deleteTable } from "../helpers/mockDynamoTables";
 import { locations } from "../../src/tempData/locationData";
 import { Tables } from "../data/tables";
@@ -62,6 +62,17 @@ describe("DesignoLocationsTable", () => {
 
       const result = await updateItem(locationError);
       expect(result).toBeUndefined();
+    });
+  });
+
+  describe("deleteLocation function", () => {
+    it("should delete an existing item based on the LocationID", async () => {
+      docClient.send = jest.fn().mockResolvedValue({
+        Item: locations[0],
+      });
+
+      const result = await deleteLocation({ locationID: "location-1" });
+      expect(result.$metadata.httpStatusCode).toBe(200);
     });
   });
 });

@@ -24,13 +24,14 @@ The architecture should:
 
 ### Links
 
-Links to website and frontend of architecture coming soon!
+- Live Site URL: [https://designowebagency.vercel.app](https://designowebagency.vercel.app/)
+- Checkout the code for the Designo Agency Frontend built with React [https://github.com/jNembhard/designo-agency-frontend](https://github.com/jNembhard/designo-agency-frontend)
 
 ## Process and Insights
 
 ### Built with
 
-- [Amazon Web Services](https://aws.amazon.com){:target="\_blank"}
+- [Amazon Web Services](https://aws.amazon.com)
   - [AppSync](https://docs.aws.amazon.com/)
   - [CloudFront](https://docs.aws.amazon.com/cloudfront/index.html)
   - [CloudFormation](https://docs.aws.amazon.com/cloudformation/index.html)

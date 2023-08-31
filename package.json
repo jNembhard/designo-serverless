@@ -6,9 +6,9 @@
   "scripts": {
     "docker": "docker compose up -d dynamodb",
     "test": "yarn run docker && jest test --silent",
-    "test:coverage": "yarn run docker && jest --coverage",
-    "test:verbose": "yarn run docker && jest test",
-    "test:watch": "yarn run docker && jest test --silent --watchAll",
+    "test:coverage": "yarn run docker && jest spec --coverage --silent",
+    "test:verbose": "yarn run docker && jest test spec",
+    "test:watch": "yarn run docker && jest test spec --silent --watchAll",
     "test:watch:verbose": "yarn run docker && jest test --watchAll",
     "deploy": "serverless deploy"
   },

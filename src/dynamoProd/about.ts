@@ -9,7 +9,6 @@ import {
   GetCommandOutput,
 } from "@aws-sdk/lib-dynamodb";
 import { IAbout } from "../interfaces/About";
-import { aboutData } from "../tempData/aboutData";
 import { clientProductionConfig } from "../config/dynamoClientConfig";
 
 const prodConfig = clientProductionConfig();
@@ -19,7 +18,7 @@ const docClient = DynamoDBDocumentClient.from(client);
 
 const tableName = "DesignoAboutTable";
 
-export const getAbout = async (aboutID: string): Promise<GetCommandOutput["Item"]> => {
+export const getAbout = async (aboutID: string): Promise<GetCommandOutput> => {
   const params = {
     TableName: tableName,
     Key: {
@@ -30,7 +29,7 @@ export const getAbout = async (aboutID: string): Promise<GetCommandOutput["Item"
   const command = new GetCommand(params);
   const response = await docClient.send(command);
 
-  return response.Item;
+  return response;
 };
 
 export const postAbout = async (object: IAbout): Promise<PutCommandOutput> => {
@@ -40,15 +39,11 @@ export const postAbout = async (object: IAbout): Promise<PutCommandOutput> => {
   return response;
 };
 
-export const postAboutList = async (): Promise<PutCommandOutput[]> => {
-  let responses = [];
-
+export const postAboutList = async (aboutData: IAbout[]): Promise<void> => {
   for (let about of aboutData) {
-    let response = await postAbout(about);
-    responses.push(response);
+    await postAbout(about);
   }
-
-  return responses;
+  console.log("about items posted");
 };
 
 export const deleteAboutItem = async (aboutID: string): Promise<DeleteCommandOutput> => {

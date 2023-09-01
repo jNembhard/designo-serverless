@@ -1,0 +1,39 @@
+Query.about:
+  functions:
+    - getAbout
+Query.allAbout:
+  functions:
+    - getAllAbout
+Query.callout:
+  functions:
+    - getCallout
+Query.callouts:
+  functions:
+    - getCallouts
+Query.design:
+  functions:
+    - getDesign
+Query.designs:
+  functions:
+    - getDesigns
+Query.location:
+  functions:
+    - getLocation
+Query.locations:
+  functions:
+    - getLocations
+Query.product:
+  functions:
+    - getProduct
+Query.productGroup:
+  functions:
+    - getProductGroup
+Query.products:
+  functions:
+    - getProducts
+Query.social:
+  functions:
+    - getSocial
+Query.socials:
+  functions:
+    - getSocials

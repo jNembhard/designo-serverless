@@ -1,0 +1,26 @@
+Resources:
+    DesignoImageBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: designo-image-bucket
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
+    DesignoImageBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: designo-image-bucket
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Sid: AllowCloudFrontServicePrincipalReadOnly
+              Effect: Allow
+              Principal:
+                Service: cloudfront.amazonaws.com
+              Action: s3:GetObject
+              Resource: arn:aws:s3:::designo-image-bucket/*
+              Condition:
+                StringEquals:
+                  AWS:SourceArn: arn:aws:cloudfront::147962036763:distribution/E2U4EPDXOYPG7T

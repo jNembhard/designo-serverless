@@ -1,0 +1,66 @@
+getAbout:
+  handler: src/dynamoProd/about.getAbout
+  description: get an item from the DesignoAboutTable
+postAbout:
+  handler: src/dynamoProd/about.postAbout
+  description: add a new item to the DesignoAboutTable
+postAboutList:
+  handler: src/dynamoProd/about.postAboutList
+  description: add a list of new items to the DesignoAboutTable
+deleteAboutItem:
+  handler: src/dynamoProd/about.deleteAboutItem
+  description: delete an Item from the DesignoAboutTable
+getCallout:
+  handler: src/dynamoProd/callouts.getCallout
+  description: get a single callout object
+postCallout:
+  handler: src/dynamoProd/callouts.postCallout
+  description: put a new callout object in the table
+postCallouts:
+  handler: src/dynamoProd/callouts.postCallouts
+  description: post a new list of callouts into the DesignoCalloutTable
+deleteCallout:
+  handler: src/dynamoProd/callouts.deleteCallout
+  description: delete an item from the DesignoCalloutsTable
+postDesign:
+  handler: src/dynamoProd/designs.postDesign
+  description: update a single item in the DesignoDesignsTable
+postDesigns:
+  handler: src/dynamoProd/designs.postDesigns
+  description: add a list of items in the DesignoDesignsTable
+deleteDesign:
+  handler: src/dynamoProd/designs.deleteDesign
+  description: delete an item from the DesignoDesignsTable
+postLocation:
+  handler: src/dynamoProd/locations.postLocation
+  description: add a single item in the DesignoLocationsTable
+postLocations:
+  handler: src/dynamoProd/locations.postLocations
+  description: update a list of items in the DesignoLocationsTable
+deleteLocation:
+  handler: src/dynamoProd/locations.deleteLocation
+  description: delete an item from the DesignoLocationsTable
+postProduct:
+  handler: src/dynamoProd/products.postProduct
+  description: add a new product to the DesignoProductsTable
+postProducts:
+  handler: src/dynamoProd/products.postProducts
+  description: add a list of products to the DesignoProductsTable
+deleteProduct:
+  handler: src/dynamoProd/products.deleteProduct
+  description: delete an item from the DesignoProductsTable
+postSocial:
+  handler: src/dynamoProd/socials.postSocial
+  description: add a single item in the DesignoSocialsTable
+postSocials:
+  handler: src/dynamoProd/socials.postSocials
+  description: add a list of items in the DesignoSocialsTable
+deleteSocialItem:
+  handler: src/dynamoProd/socials.deleteSocialItem
+  description: delete an item from the DesignoSocialsTable
+updateItem:
+  handler: src/dynamoProd/update.updateItem
+  description: update a single item in a table that contains a primary hash key
+updateSortedItem:
+  handler: src/dynamoProd/update.updateSortedItem
+  description: update a single item in a table that contains a primary hash key and a sort range key

@@ -7,7 +7,6 @@ import {
   PutCommandOutput,
 } from "@aws-sdk/lib-dynamodb";
 import { ILocation } from "../interfaces/Location";
-import { locations } from "../tempData/locationData";
 import { clientProductionConfig } from "../config/dynamoClientConfig";
 
 const prodConfig = clientProductionConfig();
@@ -24,15 +23,11 @@ export const postLocation = async (object: ILocation): Promise<PutCommandOutput>
   return response;
 };
 
-export const postLocations = async (): Promise<PutCommandOutput[]> => {
-  let responses = [];
-
+export const postLocations = async (locations: ILocation[]): Promise<void> => {
   for (let location of locations) {
-    let response = await postLocation(location);
-    responses.push(response);
+    await postLocation(location);
   }
-
-  return responses;
+  console.log("location items posted");
 };
 
 export const deleteLocation = async (locationID: string): Promise<DeleteCommandOutput> => {

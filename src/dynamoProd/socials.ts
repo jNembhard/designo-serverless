@@ -7,7 +7,6 @@ import {
   PutCommandOutput,
 } from "@aws-sdk/lib-dynamodb";
 import { ISocial } from "../interfaces/Social";
-import { socials } from "../tempData/socialData";
 import { clientProductionConfig } from "../config/dynamoClientConfig";
 
 const prodConfig = clientProductionConfig();
@@ -24,14 +23,11 @@ export const postSocial = async (object: ISocial): Promise<PutCommandOutput> => 
   return response;
 };
 
-export const postSocials = async (): Promise<PutCommandOutput[]> => {
-  let responses = [];
+export const postSocials = async (socials: ISocial[]): Promise<void> => {
   for (let social of socials) {
-    let response = await postSocial(social);
-    responses.push(response);
+    await postSocial(social);
   }
-
-  return responses;
+  console.log("social items posted");
 };
 
 export const deleteSocialItem = async (socialID: string): Promise<DeleteCommandOutput> => {

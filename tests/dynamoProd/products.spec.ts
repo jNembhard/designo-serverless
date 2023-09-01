@@ -35,11 +35,15 @@ describe("DesignoProductsTable", () => {
 
   describe("postProducts function", () => {
     it("should add a list of items to the DesignoProductsTable", async () => {
+      const consoleLogMock = jest.spyOn(console, "log");
+      consoleLogMock.mockImplementation(() => {});
+
       docClient.send = jest.fn().mockResolvedValue({
         Items: products,
       });
-      const result = await postProducts();
-      expect(result.length).toEqual(14);
+
+      await postProducts(products);
+      expect(consoleLogMock).toHaveBeenCalledTimes(1);
     }, 10000);
   });
 

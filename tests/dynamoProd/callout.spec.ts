@@ -35,11 +35,15 @@ describe("DesignoCalloutTable", () => {
 
   describe("postCallouts function", () => {
     it("should add a list of new data to the DesignoCalloutTable", async () => {
+      const consoleLogMock = jest.spyOn(console, "log");
+      consoleLogMock.mockImplementation(() => {});
+
       docClient.send = jest.fn().mockResolvedValue({
         Items: callouts,
       });
-      const results = await postCallouts();
-      expect(results.length).toEqual(3);
+
+      await postCallouts(callouts);
+      expect(consoleLogMock).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -49,7 +53,7 @@ describe("DesignoCalloutTable", () => {
         Item: callouts[0],
       });
       const result = await getCallout("callout-1");
-      expect(result).toEqual(callouts[0].Item);
+      expect(result.Item).toEqual(callouts[0].Item);
     });
   });
 

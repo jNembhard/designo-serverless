@@ -35,11 +35,15 @@ describe("DesignoSocialsTable", () => {
 
   describe("postSocials function", () => {
     it("should add a list of new data to the DesignoSocialsTable", async () => {
+      const consoleLogMock = jest.spyOn(console, "log");
+      consoleLogMock.mockImplementation(() => {});
+
       docClient.send = jest.fn().mockResolvedValue({
         Items: socials,
       });
-      const result = await postSocials();
-      expect(result.length).toEqual(5);
+
+      await postSocials(socials);
+      expect(consoleLogMock).toHaveBeenCalledTimes(1);
     }, 8000);
   });
 

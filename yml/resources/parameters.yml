@@ -1,0 +1,11 @@
+Parameters:
+    CachePolicy:
+      Description: specifies the default cache policy for the Designo CloudFront Distribution.
+      Type: String
+      Default: CachingOptimized
+      AllowedValues:
+        - CachingOptimized
+        - CachingDisabled
+        - CachingOptimizedForUncompressedObjects
+        - Elemental-MediaPackage
+        - Amplify

@@ -35,11 +35,15 @@ describe("DesignoAboutTable", () => {
 
   describe("postAboutList function", () => {
     it("should add a list of items to the DesignoAboutTable", async () => {
+      const consoleLogMock = jest.spyOn(console, "log");
+      consoleLogMock.mockImplementation(() => {});
+
       docClient.send = jest.fn().mockResolvedValue({
         Items: aboutData,
       });
-      const results = await postAboutList();
-      expect(results.length).toEqual(3);
+
+      await postAboutList(aboutData);
+      expect(consoleLogMock).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -49,7 +53,7 @@ describe("DesignoAboutTable", () => {
         Item: aboutData[0],
       });
       const result = await getAbout("about-1");
-      expect(result).toEqual(aboutData[0].Item);
+      expect(result.Item).toEqual(aboutData[0].Item);
     });
 
     it("should retrieve data for an existing AboutID containing a keyPointBgPattern image", async () => {
@@ -57,7 +61,7 @@ describe("DesignoAboutTable", () => {
         Item: aboutData[1],
       });
       const result = await getAbout("about-2");
-      expect(result).toEqual(aboutData[1].Item);
+      expect(result.Item).toEqual(aboutData[1].Item);
     });
   });
 

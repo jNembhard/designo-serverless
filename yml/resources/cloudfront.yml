@@ -1,0 +1,31 @@
+Resources:
+    DesignoDistribution:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Origins:
+            - Id: S3Origin
+              DomainName: !GetAtt DesignoImageBucket.DomainName
+              S3OriginConfig:
+                OriginAccessIdentity: ""
+              OriginAccessControlId: !GetAtt DesignoCloudFrontOriginAccessControl.Id
+          Enabled: true
+          DefaultRootObject: assets/
+          Comment: default route for distribution of contents
+          DefaultCacheBehavior:
+            CachePolicyId: !FindInMap [ CachePolicyIds, CachingOptimized, Id ]
+            TargetOriginId: S3Origin
+            ViewerProtocolPolicy: redirect-to-https
+          HttpVersion: http2
+          ViewerCertificate:
+            CloudFrontDefaultCertificate: true
+          IPV6Enabled: false
+    DesignoCloudFrontOriginAccessControl:
+      Type: AWS::CloudFront::OriginAccessControl
+      Properties:
+        OriginAccessControlConfig:
+          Description: Allow access to designo-image-bucket through CloudFront
+          Name: DesignoOAC
+          OriginAccessControlOriginType: s3
+          SigningBehavior: always
+          SigningProtocol: sigv4

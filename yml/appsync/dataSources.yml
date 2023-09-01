@@ -1,0 +1,30 @@
+AboutTable:
+  type: AMAZON_DYNAMODB
+  description: "The About table for Designo's website"
+  config:
+    tableName: DesignoAboutTable
+CalloutTable:
+  type: AMAZON_DYNAMODB
+  description: "The Callout table for Designo's website"
+  config:
+    tableName: DesignoCalloutTable
+DesignsTable:
+  type: AMAZON_DYNAMODB
+  description: "The Designs table for Designo's website"
+  config:
+    tableName: DesignoDesignsTable
+LocationsTable:
+  type: AMAZON_DYNAMODB
+  description: "The Locations table for Designo's website"
+  config:
+    tableName: DesignoLocationsTable
+ProductsTable:
+  type: AMAZON_DYNAMODB
+  description: "The Products table for Designo's website"
+  config:
+    tableName: DesignoProductsTable
+SocialsTable:
+  type: AMAZON_DYNAMODB
+  description: "The Socials table for Designo's website"
+  config:
+    tableName: DesignoSocialsTable

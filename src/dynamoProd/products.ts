@@ -7,7 +7,6 @@ import {
   PutCommandOutput,
 } from "@aws-sdk/lib-dynamodb";
 import { IProduct } from "../interfaces/Product";
-import { products } from "../tempData/productData";
 import { clientProductionConfig } from "../config/dynamoClientConfig";
 
 const prodConfig = clientProductionConfig();
@@ -23,15 +22,11 @@ export const postProduct = async (object: IProduct): Promise<PutCommandOutput> =
   return response;
 };
 
-export const postProducts = async (): Promise<PutCommandOutput[]> => {
-  let responses = [];
-
+export const postProducts = async (products: IProduct[]): Promise<void> => {
   for (let product of products) {
-    let response = await postProduct(product);
-    responses.push(response);
+    await postProduct(product);
   }
-
-  return responses;
+  console.log("product items posted");
 };
 
 export const deleteProduct = async ({

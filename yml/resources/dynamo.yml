@@ -1,0 +1,83 @@
+Resources:
+    DesignoAboutTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: DesignoAboutTable
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        AttributeDefinitions:
+          - AttributeName: AboutID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: AboutID
+            KeyType: HASH
+    DesignoCalloutTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: DesignoCalloutTable
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        AttributeDefinitions:
+          - AttributeName: calloutID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: calloutID
+            KeyType: HASH
+    DesignoDesignsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: DesignoDesignsTable
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        AttributeDefinitions:
+          - AttributeName: DesignID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: DesignID
+            KeyType: HASH
+    DesignoProductsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: DesignoProductsTable
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        AttributeDefinitions:
+          - AttributeName: ProductType
+            AttributeType: S
+          - AttributeName: ProductID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: ProductType
+            KeyType: HASH
+          - AttributeName: ProductID
+            KeyType: RANGE
+    DesignoLocationsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: DesignoLocationsTable
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        AttributeDefinitions:
+          - AttributeName: LocationID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: LocationID
+            KeyType: HASH
+    DesignoSocialsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: DesignoSocialsTable
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        AttributeDefinitions:
+          - AttributeName: SocialID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: SocialID
+            KeyType: HASH

@@ -1,0 +1,65 @@
+getAbout:
+  dataSource: AboutTable
+  request: src/velocityTemplates/about/item/request.vtl
+  response: src/velocityTemplates/about/item/response.vtl
+  description: get a single item from the AboutTable
+getAllAbout:
+  dataSource: AboutTable
+  request: src/velocityTemplates/about/items/request.vtl
+  response: src/velocityTemplates/about/items/response.vtl
+  description: get a list of items from the AboutTable
+getCallout:
+  dataSource: CalloutTable
+  request: src/velocityTemplates/callout/item/request.vtl
+  response: src/velocityTemplates/callout/item/response.vtl
+  description: get a single item from the CalloutTable
+getCallouts:
+  dataSource: CalloutTable
+  request: src/velocityTemplates/callout/items/request.vtl
+  response: src/velocityTemplates/callout/items/response.vtl
+  description: get a list of items from the CalloutTable
+getDesign:
+  dataSource: DesignsTable
+  request: src/velocityTemplates/design/item/request.vtl
+  response: src/velocityTemplates/design/item/response.vtl
+  description: get a single item from the DesignsTable
+getDesigns:
+  dataSource: DesignsTable
+  request: src/velocityTemplates/design/items/request.vtl
+  response: src/velocityTemplates/design/items/response.vtl
+  description: get a list of items from the DesignsTable
+getLocation:
+  dataSource: LocationsTable
+  request: src/velocityTemplates/location/item/request.vtl
+  response: src/velocityTemplates/location/item/response.vtl
+  description: get a single item from the LocationsTable
+getLocations:
+  dataSource: LocationsTable
+  request: src/velocityTemplates/location/items/request.vtl
+  response: src/velocityTemplates/location/items/response.vtl
+  description: get a list of items from the LocationsTable
+getProduct:
+  dataSource: ProductsTable
+  request: src/velocityTemplates/product/item/request.vtl
+  response: src/velocityTemplates/product/item/response.vtl
+  description: get a single item from the ProductsTable
+getProductGroup:
+  dataSource: ProductsTable
+  request: src/velocityTemplates/product/specificItems/request.vtl
+  response: src/velocityTemplates/product/specificItems/response.vtl
+  description: get a group of items based on the primary key in the ProductsTable
+getProducts:
+  dataSource: ProductsTable
+  request: src/velocityTemplates/product/items/request.vtl
+  response: src/velocityTemplates/product/items/response.vtl
+  description: get a list of items from the ProductsTable
+getSocial:
+  dataSource: SocialsTable
+  request: src/velocityTemplates/social/item/request.vtl
+  response: src/velocityTemplates/social/item/response.vtl
+  description: get a single item from the SocialsTable
+getSocials:
+  dataSource: SocialsTable
+  request: src/velocityTemplates/social/items/request.vtl
+  response: src/velocityTemplates/social/items/response.vtl
+  description: get a list of items from the SocialsTable

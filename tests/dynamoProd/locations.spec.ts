@@ -35,11 +35,15 @@ describe("DesignoLocationsTable", () => {
 
   describe("postLocations function", () => {
     it("should add a list of new data to the DesignLocationsTable", async () => {
+      const consoleLogMock = jest.spyOn(console, "log");
+      consoleLogMock.mockImplementation(() => {});
+
       docClient.send = jest.fn().mockResolvedValue({
         Items: locations,
       });
-      const results = await postLocations();
-      expect(results.length).toEqual(3);
+
+      await postLocations(locations);
+      expect(consoleLogMock).toHaveBeenCalledTimes(1);
     });
   });
 

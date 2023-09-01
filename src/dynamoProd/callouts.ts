@@ -9,7 +9,6 @@ import {
   PutCommandOutput,
 } from "@aws-sdk/lib-dynamodb";
 import { ICallout } from "../interfaces/Callout";
-import { callouts } from "../tempData/calloutData";
 import { clientProductionConfig } from "../config/dynamoClientConfig";
 
 const prodConfig = clientProductionConfig();
@@ -19,7 +18,7 @@ const docClient = DynamoDBDocumentClient.from(client);
 
 const tableName = "DesignoCalloutTable";
 
-export const getCallout = async (calloutID: string): Promise<GetCommandOutput["Item"]> => {
+export const getCallout = async (calloutID: string): Promise<GetCommandOutput> => {
   const params = {
     TableName: tableName,
     Key: {
@@ -30,7 +29,7 @@ export const getCallout = async (calloutID: string): Promise<GetCommandOutput["I
   const command = new GetCommand(params);
   const response = await docClient.send(command);
 
-  return response.Item;
+  return response;
 };
 
 export const postCallout = async (object: ICallout): Promise<PutCommandOutput> => {
@@ -40,15 +39,11 @@ export const postCallout = async (object: ICallout): Promise<PutCommandOutput> =
   return response;
 };
 
-export const postCallouts = async (): Promise<PutCommandOutput[]> => {
-  let responses = [];
-
+export const postCallouts = async (callouts: ICallout[]): Promise<void> => {
   for (let callout of callouts) {
-    let response = await postCallout(callout);
-    responses.push(response);
+    await postCallout(callout);
   }
-
-  return responses;
+  console.log("callout items posted");
 };
 
 export const deleteCallout = async (calloutID: string): Promise<DeleteCommandOutput> => {

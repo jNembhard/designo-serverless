@@ -10,6 +10,7 @@
     "test:verbose": "yarn run docker && jest",
     "test:watch": "yarn run docker && jest test spec --silent --watchAll",
     "test:watch:verbose": "yarn run docker && jest test --watchAll",
+    "test:ci": "yarn run docker && jest test spec",
     "deploy": "serverless deploy"
   },
   "author": "Jason Nembhard",

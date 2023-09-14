@@ -8,7 +8,7 @@ import { Tables } from "../data/tables";
 import { updateError, updateSocial } from "../data/updateItems";
 import { updateItem } from "../../src/dynamoProd/update";
 
-const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT });
+const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT, region: process.env.AWS_REGION });
 const docClient = DynamoDBDocumentClient.from(client);
 
 const socialsTable = Tables[5];

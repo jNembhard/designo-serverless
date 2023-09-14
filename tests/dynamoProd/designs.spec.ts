@@ -8,7 +8,7 @@ import { Tables } from "../data/tables";
 import { updateItem } from "../../src/dynamoProd/update";
 import { updateDesign, updateError } from "../data/updateItems";
 
-const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT });
+const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT, region: process.env.AWS_REGION });
 const docClient = DynamoDBDocumentClient.from(client);
 
 const designsTable = Tables[2];

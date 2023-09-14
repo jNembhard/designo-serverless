@@ -8,7 +8,7 @@ import { Tables } from "../data/tables";
 import { updateItem } from "../../src/dynamoProd/update";
 import { updateAbout, updateError } from "../data/updateItems";
 
-const client = new DynamoDBClient({ endpoint: process.env.DEV_ENDPOINT });
+const client = new DynamoDBClient({ endpoint: "http://localhost:8000", region: "us-east-1" });
 const docClient = DynamoDBDocumentClient.from(client);
 
 const aboutTableData = Tables[0];

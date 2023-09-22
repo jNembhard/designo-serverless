@@ -23,13 +23,16 @@ provider:
             - "arn:aws:s3:::designo-image-bucket/*"
 package:
   patterns:
-    - "!.tmp/**"
     - "!coverage/**"
+    - "!.github"
+    - "!.nvmrc"
+    - "!.tmp/**"
+    - "!tests/**"
 
 functions: ${file(yml/functions.yml)}
-  
+
 plugins:
-  - serverless-plugin-typescript
+  - serverless-webpack
   - serverless-appsync-plugin
 
 appSync:
@@ -45,7 +48,7 @@ appSync:
   pipelineFunctions: ${file(yml/appsync/pipelineFunctions.yml)}
   resolvers: ${file(yml/appsync/resolvers.yml)}
   dataSources: ${file(yml/appsync/dataSources.yml)}
-    
+
 resources:
   - ${file(yml/resources/parameters.yml)}
   - ${file(yml/resources/mappings.yml)}

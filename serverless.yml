@@ -24,7 +24,7 @@ provider:
 package:
   patterns:
     - "!coverage/**"
-    - "!.github"
+    - "!.github/**"
     - "!.nvmrc"
     - "!.tmp/**"
     - "!tests/**"
@@ -34,6 +34,14 @@ functions: ${file(yml/functions.yml)}
 plugins:
   - serverless-webpack
   - serverless-appsync-plugin
+
+custom:
+  webpack:
+    webpackConfig: webpack.config.js
+    excludeFiles: tests/**
+    keepOutputDirectory: false
+    serializedCompile: true
+    packager: yarn
 
 appSync:
   name: designo-graphql
@@ -50,8 +58,8 @@ appSync:
   dataSources: ${file(yml/appsync/dataSources.yml)}
 
 resources:
-  - ${file(yml/resources/parameters.yml)}
-  - ${file(yml/resources/mappings.yml)}
-  - ${file(yml/resources/dynamo.yml)}
-  - ${file(yml/resources/s3.yml)}
   - ${file(yml/resources/cloudfront.yml)}
+  - ${file(yml/resources/dynamo.yml)}
+  - ${file(yml/resources/mappings.yml)}
+  - ${file(yml/resources/parameters.yml)}
+  - ${file(yml/resources/s3.yml)}

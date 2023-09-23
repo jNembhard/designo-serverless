@@ -5,9 +5,11 @@
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Links](#links)
-- [Project and Insights](#process-and-insights)
-  - [Built with](#built-with)
+- [Project Insights and Tech Stack](#process-and-tech-stack)
+  - [Tech Stack](#tech-stack)
   - [Project Insights](#project-insights)
+    - [CloudFront](#cloudfront)
+    - [Webpack](#webpack)
 - [Author](#author)
 
 ## Overview
@@ -27,9 +29,9 @@ The architecture should:
 - Live Site URL: [https://designowebagency.vercel.app](https://designowebagency.vercel.app/)
 - Checkout the code for the Designo Agency Frontend built with React [https://github.com/jNembhard/designo-agency-frontend](https://github.com/jNembhard/designo-agency-frontend)
 
-## Process and Insights
+## Project Insights and Tech Stack
 
-### Built with
+### Tech Stack
 
 - [Amazon Web Services](https://aws.amazon.com)
   - [AppSync](https://docs.aws.amazon.com/)
@@ -44,8 +46,9 @@ The architecture should:
 - [Serverless](https://www.serverless.com/framework/docs)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Velocity Template Language](https://velocity.apache.org/engine/1.7/vtl-reference.html)
+- [Webpack](https://webpack.js.org/) - Bundler
 
-### Project and Insights
+### Project Insights
 
 The backend of this application was meant for a web agency frontend that would be built with React utilizing TypeScript. The data structures are not uniform across separate data sources, and I decided that GraphQL would be the best approach to handle this issue. This allows for simplified API development using AppSync by pulling necessary data into a single source of truth. Resolvers can be setup to avoid over-fetching and under-fetching the necessary data into the frontend of the application on each call.
 
@@ -165,6 +168,22 @@ const designOne: IDesign = {
 ```
 
 It's important to note in this example, a sort key was not necessary due to the simple design pattern. If you want to see an example of a data structure using a SortKey, checkout the productData.ts file in the tempData folder. The URLs contain information about the location of the images which point to a folder in an S3 bucket.
+
+#### CloudFront
+
+I decided to use CloudFront as a (CDN) service to accelerate distribution of data to the frontend of the applicatoion when a call is made through a GraphQL endpoint. I felt this would help to ensure that all data is distributed to edge locations closest to end users who may visit the site. This can help to reduce latency, and scale to handle higher traffic loads and is great for improving global reach of your applications. The faster your content is delivered to your user, the less likely they are to leave your site.
+
+#### Webpack
+
+Recently I ran into an issue creating lambda functions. The package sizes were immense, close to 300MB. AWS only supports package sizes of up to 50MB zipped and 250MB uncompressed. I needed to find an effective way to reduce the package size. This is where Webpack comes to the rescue.
+
+Webpack allows you to bundle all your required dependencies into a single package, reducing deployment size and improving function startup performance. This is crucial for not only improving overall performance, but smaller packages can lead to faster execution times and lower costs since you are often billed on AWS based on the resources and time your code consumes.
+
+The biggest improvement was the use of the externals to exclude `aws-sdk` as well as node's native modules. These are available in our aws environment where the code will run and are not necessary to include in output bundle.
+
+The result? A reduction of file size down from 300MB to 5.06KB!
+
+### Closing
 
 Check out the serverless.yml file for more information on the setup of the serverless architecture. The architecture is deployed through CloudFormation on AWS. This allows you to setup and update the entire stack from one place instead of building each part of the infrastructure individually within the cloud.
 

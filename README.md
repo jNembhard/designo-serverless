@@ -171,7 +171,7 @@ It's important to note in this example, a sort key was not necessary due to the 
 
 #### CloudFront
 
-I decided to use CloudFront as a (CDN) service to accelerate distribution of data to the frontend of the applicatoion when a call is made through a GraphQL endpoint. I felt this would help to ensure that all data is distributed to edge locations closest to end users who may visit the site. This can help to reduce latency, and scale to handle higher traffic loads and is great for improving global reach of your applications. The faster your content is delivered to your user, the less likely they are to leave your site.
+I decided to use CloudFront as a (CDN) service to accelerate distribution of data to the frontend of the application when a call is made through a GraphQL endpoint. I felt this would help to ensure that all data is distributed to edge locations closest to end users who may visit the site. This can help to reduce latency, and scale to handle higher traffic loads and is great for improving global reach of your applications. The faster your content is delivered to your user, the less likely they are to leave your site.
 
 #### Webpack
 
